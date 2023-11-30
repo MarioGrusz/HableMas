@@ -3,6 +3,7 @@ import { AudioRecorder, useAudioRecorder } from 'react-audio-voice-recorder';
 
 
 const AudioRecorderComponent = () => {
+    
     const recorderControls = useAudioRecorder();
 
     const addAudioElement = (blob) => {

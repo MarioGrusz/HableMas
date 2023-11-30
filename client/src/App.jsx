@@ -7,6 +7,7 @@ function App() {
   return (
     <>
      <p>HableMás</p>
+     <p>You Spanish Partner</p>
      <AudioRecorderComponent />
     </>
   )
