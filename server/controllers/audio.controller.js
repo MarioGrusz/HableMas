@@ -1,5 +1,5 @@
 import path from 'path';
-import { promises as fs } from 'fs';
+import fs from 'fs';
 import ffmpegPath from '@ffmpeg-installer/ffmpeg';
 import ffmpeg from 'fluent-ffmpeg';
 import { dirname } from 'path';
