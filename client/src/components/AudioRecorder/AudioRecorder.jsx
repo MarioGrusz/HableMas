@@ -122,7 +122,9 @@ const AudioRecorderComponent = ({ setIsLoading, isRecordingEnabled, setIsRecordi
     <div className='icon-wrapper'>
       <button
         onMouseDown={handleStartRecording}
+        onTouchStart={handleStartRecording}
         onMouseUp={handleStopRecording}
+        onTouchEnd={handleStopRecording}
         className={`record-button recording mic-icon-pulse ${isRecording ? 'recording' : 'reset-animation'}`}
       >
       <RecordIcon />
