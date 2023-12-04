@@ -1,0 +1,134 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.message-bubble {
+  display: flex;
+  width: auto;
+  align-items: flex-end;
+
+  &__avatar {
+    height: 35px;
+    width: 35px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    z-index: 1;
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  &__text {
+    max-width: 255px;
+    word-wrap: break-word;
+    margin-bottom: 12px;
+    line-height: 24px;
+    position: relative;
+    padding: 15px 30px;
+    border-radius: 25px;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      height: 25px;
+    }
+  }
+
+  &__chatbot-message,
+  &__user-message {
+    background: #ffffff;
+    color: $color-black;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+
+    &:before {
+      left: -7px;
+      width: 20px;
+      background-color: #ffffff;
+      border-bottom-right-radius: 16px 14px;
+    }
+
+    &:after {
+      left: -26px;
+      width: 26px;
+      background-color: $chat-2nd-backgroundColor;
+      border-bottom-right-radius: 10px;
+    }
+  }
+
+  &__user-message {
+    //background-color: #0b93f6;
+    background-color: $chat-userBubbleColor;
+
+    &:before {
+      background-color: $chat-userBubbleColor;
+    }
+  }
+
+  &__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 32px 0;
+    overflow: hidden;
+  }
+
+  &__dots-flashing {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #9880ff;
+    color: #9880ff;
+    animation: dot-flashing 1s infinite linear alternate;
+    animation-delay: 0s;
+    animation-delay: 0.5s;
+
+    &:before,
+    &:after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 0;
+    }
+
+    &:before {
+      left: -15px;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      background-color: $chat-userBubbleColor;
+      color: $chat-userBubbleColor;
+      animation: dot-flashing 1s infinite alternate;
+      animation-delay: 0s;
+      animation-delay: 0s;
+    }
+
+    &:after {
+      left: 15px;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      background-color: $chat-userBubbleColor;
+      color: $chat-userBubbleColor;
+      animation: dot-flashing 1s infinite alternate;
+      animation-delay: 0s;
+      animation-delay: 1s;
+    }
+  }
+}
+
+@keyframes dot-flashing {
+  0% {
+    background-color: $chat-userBubbleColor;
+  }
+  50%,
+  100% {
+    background-color: rgba(152, 128, 255, 0.2);
+  }
+}

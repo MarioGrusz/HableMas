@@ -1,16 +1,28 @@
+import { useState } from "react";
 import AudioRecorderComponent from "./components/AudioRecorder/AudioRecorder";
-import Controller from "./components/Controller/Controller";
+import ChatController from "./components/ChatController/ChatController";
 
 
 
 function App() {
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [isRecordingEnabled, setIsRecordingEnabled] = useState(true)
+
   return (
     <>
-     <p>HableMás</p>
-     <p>You Spanish Partner</p>
-     <AudioRecorderComponent />
-     <Controller />
+     <ChatController 
+        isLoading={isLoading} 
+        setIsLoading={setIsLoading} 
+        setIsRecordingEnabled={setIsRecordingEnabled} 
+     />
+     <div className="mic-wrapper">
+        <AudioRecorderComponent 
+            setIsLoading={setIsLoading} 
+            isRecordingEnabled={isRecordingEnabled} 
+            setIsRecordingEnabled={setIsRecordingEnabled} 
+        />
+     </div>
     </>
   )
 }

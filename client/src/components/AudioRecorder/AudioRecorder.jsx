@@ -1,8 +1,11 @@
 import { useRef, useEffect, useCallback, useReducer } from "react";
 import { BASE_URL } from "../../constant/apiConstants";
+import './index.scss';
 import axios from 'axios';
 import FormData from 'form-data';
 import socket from "../../socket/socket";
+import RecordIcon from "../RecordIcon/RecordIcon";
+import { useState } from "react";
 
 const initialState = {
  permission: false,
@@ -29,9 +32,10 @@ const reducer = (state, action) => {
  }
 };
 
-const AudioRecorderComponent = () => {
+const AudioRecorderComponent = ({ setIsLoading, isRecordingEnabled, setIsRecordingEnabled }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [isRecording, setIsRecording] = useState(false);
   const mediaRecorder = useRef(null);
 
   const getMicrophonePermission = useCallback(async () => {
@@ -84,6 +88,8 @@ const AudioRecorderComponent = () => {
 
       try {
         const response = await axios.post(`${BASE_URL}/audio`, formData, { headers });
+        setIsLoading(true);
+        setIsRecordingEnabled(false)
         socket.emit('get-transcription');
       } catch (error) {
         console.error(error);
@@ -96,12 +102,33 @@ const AudioRecorderComponent = () => {
     getMicrophonePermission();
   }, [getMicrophonePermission]);
 
+  const handleStartRecording = () => {
+    if (!isRecordingEnabled) {
+      return; 
+    }
+    startRecording();
+    setIsRecording(true); 
+  };
+
+  const handleStopRecording = () => {
+    stopRecording();
+    setIsRecording(false);
+  };
+
+
+
   return (
-    <main>
-      <button  onClick={startRecording}>Start</button>
-      <button onClick={stopRecording}>Stop</button>
-      <audio controls src={state.audio}></audio>
-    </main>
+    
+    <div className='icon-wrapper'>
+      <button
+        onMouseDown={handleStartRecording}
+        onMouseUp={handleStopRecording}
+        className={`record-button recording mic-icon-pulse ${isRecording ? 'recording' : 'reset-animation'}`}
+      >
+      <RecordIcon />
+      </button>
+    </div>
+  
   );
 };
 

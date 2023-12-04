@@ -1,0 +1,105 @@
+@import "./mixins";
+@import "./variables";
+
+.authorization {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 100vh;
+
+  &__container {
+    width: 100vw;
+    max-width: $auth-container-width;
+    height: 500px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include mq(tablet-small, max) {
+      flex-direction: column;
+      min-height: 100vh;
+      height: auto;
+    }
+  }
+
+  &__left,
+  &__right {
+    flex: 1;
+    //border: 1px solid violet;
+  }
+
+  &__left {
+    // @include mq(phone, max) {
+    //   width: 60%;
+    // }
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  &__social-auth-btns-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    //border: 1px solid red;
+  }
+
+  &__center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+
+    .or {
+      border-radius: 50%;
+      padding: 10px;
+      color: $grey-color;
+      background-color: $white-color;
+      font-size: 0.7rem;
+      z-index: 1;
+    }
+
+    .line {
+      height: 1px;
+      width: 50%;
+      background-color: $grey-color;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+
+      @include mq(phone, max) {
+        height: 1px;
+        width: 100%;
+      }
+    }
+  }
+
+  &__signup {
+    display: flex;
+    p {
+      font-size: $text-small;
+    }
+
+    .signup-link {
+      font-size: $text-small;
+      color: $blue-color;
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+.login-form {
+  @include mq(tablet-small, max) {
+    margin-top: -2rem;
+    margin-bottom: 2rem;
+  }
+}

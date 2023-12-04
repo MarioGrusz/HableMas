@@ -1,0 +1,72 @@
+.icon-wrapper {
+  margin: 5rem 0;
+  position: relative;
+}
+
+.mic-icon-pulse {
+  height: 70px;
+  width: 70px;
+  background: linear-gradient(#8a82fb, #407ed7);
+  position: fixed;
+  margin: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 2%;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 50px;
+  color: #ffffff;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #8a82fb;
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.7;
+  }
+
+  &:before {
+    animation: pulse 2s ease-out infinite;
+    animation-play-state: paused;
+  }
+
+  &:after {
+    animation: pulse 2s 1s ease-out infinite;
+    animation-play-state: paused;
+  }
+}
+
+.recording {
+  &:before {
+    animation-play-state: running;
+  }
+  &:after {
+    animation-play-state: running;
+  }
+}
+
+.mic-icon {
+  width: 30px;
+  height: 30px;
+}
+
+@keyframes pulse {
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.reset-animation {
+  &:before {
+    animation: reset-animation 1s;
+  }
+  &:after {
+    animation: reset-animation 1s;
+  }
+}

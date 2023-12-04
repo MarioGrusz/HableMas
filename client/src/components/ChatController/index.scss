@@ -1,0 +1,50 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.chat-controller {
+  height: 100vh;
+  overflow-y: hidden;
+  border-radius: $chat-borderRadious;
+  background-color: $chat-2nd-backgroundColor;
+  margin-left: 1rem;
+
+  @include mq(phone, max) {
+    margin-left: 0;
+  }
+
+  &__chatbox {
+    position: relative;
+    height: 100vh;
+    padding: 50px;
+
+    padding: 60px 60px;
+    box-shadow: 5px 10px 40px rgba(0, 0, 0, 0.06);
+    text-align: center;
+    overflow-x: hidden;
+
+    @include mq(phone, max) {
+      padding: 2rem 1rem;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    overflow-y: scroll;
+  }
+
+  &__recorder-container {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  &__recorder-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+}

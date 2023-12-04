@@ -31,7 +31,9 @@ const reciveAndConvertAudio = async(req, res) => { //apply error midleware
 
   await new Promise((resolve, reject) => {
     ffmpeg(oldPath)
-      .toFormat('mp3')
+      .toFormat('wav') //.toFormat('mp3')
+      // .outputOptions('-ar 44100')
+      .outputOptions('-c:a pcm_s16le')
       .on('error', (err) => {
         console.log('Error converting audio: ' + err.message);
         reject(err);
