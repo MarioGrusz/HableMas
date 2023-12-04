@@ -5,14 +5,15 @@ import { fileURLToPath } from 'url';
 import FormData from 'form-data';
 import { feedbackPrompt } from '../temp_database/prompts.js';
 import createOpenAIApi from './helpers/createOpenAIApi.js';
-import getAssistantResponse from './helpers/getAssistantResponse.js';
 
+
+import { getRecentMessages } from '../temp_database/database.js';
 
 const openai = createOpenAIApi();
 const model = 'whisper-1';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const relativeFilePath = '../uploads/audio.mp3';
+const relativeFilePath = '../uploads/input.mp3';
 const filePath = path.join(__dirname, relativeFilePath);
 
 const formData = new FormData();
@@ -34,16 +35,27 @@ const callWhisper = async () => {
   }
 };
 
-callWhisper()
 
 
-const getChatResponse = async (prompt) => {
-  return getAssistantResponse('gpt-3.5-turbo', prompt);
+const getAssistantResponse = async (prompt) => {
+
+  try {
+    const messages = await getRecentMessages();
+
+    const userMessage = { role: 'user', content: prompt };
+    messages.push(userMessage);
+
+    const result = await openai.createChatCompletion({
+      model: 'gpt-3.5-turbo',
+      messages: messages,
+    });
+
+    let assistantResponse = result.data.choices[0].message.content;
+    return assistantResponse;
+  } catch (error) {
+    console.error(`Error during chat completion: ${error}`);
+    throw error;  
+  }
 };
 
-   
-const getFeedback = async () => {
-  return getAssistantResponse('gpt-3.5-turbo', feedbackPrompt);
-};
-
-export { callWhisper, getChatResponse, getFeedback }
+export { callWhisper, getAssistantResponse }

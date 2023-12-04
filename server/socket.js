@@ -1,23 +1,43 @@
 
-import { callWhisper, getChatResponse } from './services/openai.service.js';
+import { callWhisper, getAssistantResponse } from './services/openai.service.js';
 import { convertTextToMp3 } from './services/google.service.js';
 import { storeRecentMessages } from './temp_database/database.js';
 import fs from 'fs';
 
 export const setupSocketEvents = (io) => {
-    
+
+        
    io.on('connection', (socket) => {
        console.log(`User Connected: ${socket.id}`);
 
        socket.on('get-transcription', async () => {
+
+        try {
             const prompt = await callWhisper();
+            console.log('transcription', prompt)
             socket.emit('receive-transcription', prompt);
-            const chatAnswer = await getChatResponse(prompt);
+            const chatAnswer = await getAssistantResponse(prompt);
+            console.log('chat-answer', chatAnswer)
             await convertTextToMp3(chatAnswer);
-            storeRecentMessages(prompt, chatAnswer )
-            const filePath = './uploads/output.mp3';
-            const fileData = fs.readFileSync(filePath);
-            socket.emit('receive-Mp3', fileData, chatAnswer);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+
+
+            // const prompt = await callWhisper();
+            // console.log('transcription', prompt)
+            // socket.emit('receive-transcription', prompt);
+            // const chatAnswer = await getChatResponse(prompt);
+            // console.log('chat-answer', chatAnswer)
+            // console.log('socket')
+       
+            
+            // await convertTextToMp3(chatAnswer);        
+            //storeRecentMessages(prompt, chatAnswer )
+            //const filePath = './uploads/output.mp3';
+            //const fileData = fs.readFileSync(filePath);
+            //socket.emit('receive-Mp3', fileData, chatAnswer);
         });
 
 
@@ -27,3 +47,6 @@ export const setupSocketEvents = (io) => {
        }); 
    });
 }
+
+
+//convertTextToMp3('something')

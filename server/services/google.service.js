@@ -20,21 +20,32 @@ const spanishMaleVoiceYoung = 'es-ES-Wavenet-B';
 const convertTextToMp3 = async (text) => {
 
   try {
+    console.log('1')
     const request = {
       input: { text: text },
       voice: { languageCode: 'es-ES', name: spanishMaleVoice },
       audioConfig: { audioEncoding: 'MP3' }
     };
 
+    console.log('request', request)
+    console.log('2')
+
     const [response] = await client.synthesizeSpeech(request);
+    console.log('3')
     const writeFile = util.promisify(fs.writeFile);
+    console.log('4')
     await writeFile(filePath, response.audioContent, 'binary');
+    console.log('5')
 
     console.log('MP3 file successfully created at', filePath);
   } catch (error) {
     console.error('Error converting text to MP3:', error);
   }
 };
+
+const text = 'La capital de Alemania es Berlín, como te dije anteriormente. Pero, por curiosidad, ¿sabías que en alemán se dice "Hauptstadt" para referirse a capital? Es una palabra interesante.'
+
+//convertTextToMp3(text)
 
 export {
   convertTextToMp3

@@ -21,7 +21,7 @@ ffmpeg.setFfmpegPath(ffmpegPath.path);
 const reciveAndConvertAudio = async(req, res) => { //apply error midleware
 
   const oldPath = req.file.path;
-  const newFileName = 'audio.mp3';
+  const newFileName = 'input.mp3';
   const newPath = path.join('uploads', newFileName);
 
   if (!fs.existsSync(oldPath)) {

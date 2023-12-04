@@ -1,5 +1,9 @@
 
-import { useState, useRef, useEffect, useCallback, useReducer } from "react";
+import { useRef, useEffect, useCallback, useReducer } from "react";
+import { BASE_URL } from "../../constant/apiConstants";
+import axios from 'axios';
+import FormData from 'form-data';
+import socket from "../../socket/socket";
 
 //https://www.phind.com/search?cache=r482tyl2cuztu415pxekfnmg
 
@@ -29,62 +33,79 @@ const reducer = (state, action) => {
 };
 
 const AudioRecorderComponent = () => {
- const [state, dispatch] = useReducer(reducer, initialState);
- const mediaRecorder = useRef(null);
 
- const getMicrophonePermission = useCallback(async () => {
-   if ("MediaRecorder" in window) {
-     try {
-       const streamData = await navigator.mediaDevices.getUserMedia({
-         audio: true,
-         video: false,
-       });
-       dispatch({ type: "SET_PERMISSION", payload: true });
-       dispatch({ type: "SET_STREAM", payload: streamData });
-     } catch (err) {
-       alert(err.message);
-     }
-   } else {
-     alert("The MediaRecorder API is not supported in your browser.");
-   }
- }, []);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const mediaRecorder = useRef(null);
 
- const startRecording = useCallback(async () => {
-   dispatch({ type: "SET_RECORDING_STATUS", payload: "recording" });
-   const media = new MediaRecorder(state.stream, { type: 'audio/wav' });
-   mediaRecorder.current = media;
-   mediaRecorder.current.start();
-   let localAudioChunks = [];
-   mediaRecorder.current.ondataavailable = (event) => {
-     if (typeof event.data === "undefined") return;
-     if (event.data.size === 0) return;
-     localAudioChunks.push(event.data);
-   };
-   dispatch({ type: "SET_AUDIO_CHUNKS", payload: localAudioChunks });
- }, [state.stream]);
+  const getMicrophonePermission = useCallback(async () => {
+    if ("MediaRecorder" in window) {
+      try {
+        const streamData = await navigator.mediaDevices.getUserMedia({
+          audio: true,
+          video: false,
+        });
+        dispatch({ type: "SET_PERMISSION", payload: true });
+        dispatch({ type: "SET_STREAM", payload: streamData });
+      } catch (err) {
+        alert(err.message);
+      }
+    } else {
+      alert("The MediaRecorder API is not supported in your browser.");
+    }
+  }, []);
 
- const stopRecording = useCallback(() => {
-   dispatch({ type: "SET_RECORDING_STATUS", payload: "inactive" });
-   mediaRecorder.current.stop();
-   mediaRecorder.current.onstop = () => {
-     const audioBlob = new Blob(state.audioChunks, { type: 'audio/wav' });
-     const audioUrl = URL.createObjectURL(audioBlob);
-     dispatch({ type: "SET_AUDIO", payload: audioUrl });
-     dispatch({ type: "SET_AUDIO_CHUNKS", payload: [] });
-   };
- }, [state.audioChunks]);
+  const startRecording = useCallback(async () => {
+    dispatch({ type: "SET_RECORDING_STATUS", payload: "recording" });
+    const media = new MediaRecorder(state.stream, { type: 'audio/wav' });
+    mediaRecorder.current = media;
+    mediaRecorder.current.start();
+    let localAudioChunks = [];
+    mediaRecorder.current.ondataavailable = (event) => {
+      if (typeof event.data === "undefined") return;
+      if (event.data.size === 0) return;
+      localAudioChunks.push(event.data);
+    };
+    dispatch({ type: "SET_AUDIO_CHUNKS", payload: localAudioChunks });
+  }, [state.stream]);
 
- useEffect(() => {
-   getMicrophonePermission();
- }, [getMicrophonePermission]);
+  const stopRecording = useCallback(() => {
+    dispatch({ type: "SET_RECORDING_STATUS", payload: "inactive" });
+    mediaRecorder.current.stop();
 
- return (
-   <main>
-     <button onClick={startRecording}>Start</button>
-     <button onClick={stopRecording}>Stop</button>
-     <audio controls src={state.audio}></audio>
-   </main>
- );
+    mediaRecorder.current.onstop = async () => {
+      const audioBlob = new Blob(state.audioChunks, { type: 'audio/wav' });
+      const audioUrl = URL.createObjectURL(audioBlob);
+      dispatch({ type: "SET_AUDIO", payload: audioUrl });
+      dispatch({ type: "SET_AUDIO_CHUNKS", payload: [] });
+
+      const headers = {
+        'Content-Type': 'audio/wav'
+      };
+
+      const formData = new FormData();
+      formData.append('audio', audioBlob, 'audio.wav');
+
+      try {
+        const response = await axios.post(`${BASE_URL}/audio`, formData, { headers });
+        socket.emit('get-transcription');
+      } catch (error) {
+        console.error(error);
+      }
+    };   
+
+  }, [state.audioChunks]);
+
+  useEffect(() => {
+    getMicrophonePermission();
+  }, [getMicrophonePermission]);
+
+  return (
+    <main>
+      <button  onClick={startRecording}>Start</button>
+      <button onClick={stopRecording}>Stop</button>
+      <audio controls src={state.audio}></audio>
+    </main>
+  );
 };
 
 export default AudioRecorderComponent;
