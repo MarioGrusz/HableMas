@@ -1,11 +1,8 @@
-
 import { useRef, useEffect, useCallback, useReducer } from "react";
 import { BASE_URL } from "../../constant/apiConstants";
 import axios from 'axios';
 import FormData from 'form-data';
 import socket from "../../socket/socket";
-
-//https://www.phind.com/search?cache=r482tyl2cuztu415pxekfnmg
 
 const initialState = {
  permission: false,
@@ -110,5 +107,4 @@ const AudioRecorderComponent = () => {
 
 export default AudioRecorderComponent;
 
-//export socket https://www.phind.com/search?cache=lywc5xtspj0gwhgdwkuoohbt
 

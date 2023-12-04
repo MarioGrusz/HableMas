@@ -1,4 +1,5 @@
-import AudioRecorderComponent from "./components/AudioRecorder/AudioRecorder"
+import AudioRecorderComponent from "./components/AudioRecorder/AudioRecorder";
+import Controller from "./components/Controller/Controller";
 
 
 
@@ -9,6 +10,7 @@ function App() {
      <p>HableMás</p>
      <p>You Spanish Partner</p>
      <AudioRecorderComponent />
+     <Controller />
     </>
   )
 }

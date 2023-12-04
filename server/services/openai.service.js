@@ -3,7 +3,6 @@ import path from 'path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import FormData from 'form-data';
-import { feedbackPrompt } from '../temp_database/prompts.js';
 import createOpenAIApi from './helpers/createOpenAIApi.js';
 
 
