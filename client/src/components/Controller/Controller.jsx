@@ -52,16 +52,16 @@ const Controller = () => {
 
         <h1>Chat Messages</h1>
      
-      <div className="controller__chatbox">
-        {messages.map((message, index) => {
-          if (message.type === 'user') {
-            return <p key={index}>USER {message.message}</p>;
-          } else if (message.type === 'bot') {
-            return <p key={index}> BOT {message.mesage}</p>;
-          }
-          return null;
-        })}
-      </div>
+        <div className="controller__chatbox">
+            {messages.map((message, index) => {
+            if (message.type === 'user') {
+                return <p key={index}>USER {message.message}</p>;
+            } else if (message.type === 'bot') {
+                return <p key={index}> BOT {message.mesage}</p>;
+            }
+            return null;
+            })}
+        </div>
     </div>
   );
 };
