@@ -1,0 +1,107 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.animated-button {
+  pointer-events: auto;
+  color: #e0fd60;
+  margin: 0 0 0 0.2em;
+  padding: 0 2.5rem; //before 0 4.8rem
+  height: 3rem;
+  line-height: 0.92;
+
+  font-size: 2rem; //BEFORE 3rem
+  overflow: hidden;
+  border-radius: 1000px;
+  text-transform: uppercase;
+  transition: transform 0.3s;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  text-indent: inherit;
+  white-space: pre-wrap;
+
+  @include mq(phone, max) {
+    height: 2rem;
+    font-size: 1.4rem;
+    padding: 0 1rem;
+  }
+
+  &__border {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    border: 1px solid;
+    border-radius: 1000px;
+  }
+
+  &__ripple {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    overflow: hidden;
+    transform: translateZ(0);
+    border-radius: inherit;
+
+    pointer-events: auto;
+
+    span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      transform: translateY(110%);
+      background: currentColor;
+      border-radius: 50% 50% 0 0;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0, 1),
+        border-radius 0.5s cubic-bezier(0.4, 0, 0, 1);
+    }
+
+    span.active {
+      transform: translateY(0);
+      transform: rotateZ("100deg");
+      scale: 1.4;
+    }
+  }
+
+  &__title {
+    position: relative;
+    display: block;
+    padding: 0 0.16em 0 0;
+    overflow: hidden;
+    z-index: 2;
+
+    span {
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    span.active {
+      transform: translateY(-100%) perspective(700px) translateZ(20px);
+    }
+
+    span::after {
+      content: attr(data-text);
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      color: black;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  }
+}
+
+.tab-active {
+  color: red; //work on that later
+}

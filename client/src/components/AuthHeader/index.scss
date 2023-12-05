@@ -1,0 +1,19 @@
+@import "../../styles/mixins";
+
+.authorization-header {
+  width: 50vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 6rem;
+  position: relative;
+
+  @include mq(tablet-small, max) {
+    width: 100vw;
+    padding: 1rem 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}

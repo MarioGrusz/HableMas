@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&display=swap");
 @import "../../src/styles/mixins";
+@import "../../src/styles/variables";
 
-//$color-main: #f8f3df;
 $color-main: white;
 $color-black: #000000;
 
@@ -15,8 +15,6 @@ body {
   color: $color-black;
   height: 100vh;
   min-height: 100vh;
-
-  //padding: 1rem 20rem; //change it later
 }
 
 .home-container {
@@ -29,10 +27,16 @@ body {
   }
 }
 
-.mic-wrapper {
-  position: fixed;
-  bottom: 10%;
-  left: 50%;
+.fallback {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+
+  @include mq(phone, max) {
+    font-size: 3rem;
+  }
 }
 
 .page-not-found {

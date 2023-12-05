@@ -1,0 +1,21 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.custom-button {
+  display: inline-block;
+  width: 100%;
+  height: 2.7rem;
+  max-width: 16.25rem;
+
+  cursor: pointer;
+  border-radius: 0.8rem;
+  font-size: 0.8rem;
+  margin-bottom: 4rem;
+
+  background-color: $auth-button-backgroundColor;
+  color: $auth-button-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}

@@ -1,0 +1,63 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.chat-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $chat-backgroundColor;
+  border-radius: $chat-borderRadious;
+
+  padding: 1rem 0;
+  margin: 1rem 2rem;
+
+  @include mq(tablet-wide, max) {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+
+  &__avatar-wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  &__text-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+  }
+
+  &__name {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+
+    @include mq(phone, max) {
+      font-size: 15px;
+    }
+  }
+
+  &__question {
+    @include mq(phone, max) {
+      font-size: 12px;
+    }
+
+    &:nth-child(3) {
+      opacity: 0.7;
+    }
+  }
+}
+
+.chat-header > div:nth-child(2) {
+  margin-right: 5rem;
+
+  @include mq(phone, max) {
+    margin-right: 0.5rem;
+  }
+}

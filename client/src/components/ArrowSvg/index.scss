@@ -1,0 +1,12 @@
+.arrow {
+  background-color: #f1f5f6;
+  border-radius: 100px;
+  padding: 24px;
+  display: flex;
+  height: max-content;
+  transform: rotate(45deg);
+
+  svg {
+    width: 24px;
+  }
+}

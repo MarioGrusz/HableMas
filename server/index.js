@@ -16,7 +16,9 @@ import loadEnv from './utils/loadEnv.js';
 import connectDB from './config/database.js';
 import { setupSocketEvents } from './socket.js';
 import errorHandler from './middleware/error.js';
-import audioRouter from './routes/audio.js'
+import audioRouter from './routes/audio.js';
+import userRouter from './routes/user.js'
+import feedbackRouter from './routes/feedback.js';
 
 //Load environment variables from .env file
 loadEnv('../.env');
@@ -27,6 +29,8 @@ app.use(express.json({ limit: "50mb" }));
 const PORT = process.env.PORT || 5000;
 
 app.use("/api/v1/audio", audioRouter);
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/feedback", feedbackRouter);
 app.use(errorHandler)
 
 app.get("/", (req, res) => {

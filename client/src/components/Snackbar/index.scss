@@ -1,0 +1,36 @@
+.snackbar {
+  width: 350px;
+  height: 60px;
+  text-align: center;
+  position: fixed;
+  z-index: 1000;
+  bottom: 1rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  &__symbol {
+    flex: 20%;
+  }
+
+  &__message {
+    flex: 80%;
+    text-align: start;
+    font-weight: bold;
+  }
+}
+
+.show {
+  visibility: visible;
+}
+
+.hide {
+  visibility: hidden;
+}

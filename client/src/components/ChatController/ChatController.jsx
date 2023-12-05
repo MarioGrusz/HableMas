@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './index.scss';
 import socket from '../../socket/socket';
 import { UserMessage, ChatBotMessage, DotAnimation } from '../ChatElements/ChatElements';
+import AudioRecorderComponent from '../AudioRecorder/AudioRecorder';
 
-const ChatController = ({ isLoading, setIsLoading, setIsRecordingEnabled }) => {
+const ChatController = () => {
 
+    const [isLoading, setIsLoading] = useState(false);
     const [isLoadingBot, setIsLoadingBot] = useState(false);
     const [messages, setMessages] = useState([]);
+    const [isRecordingEnabled, setIsRecordingEnabled] = useState(true)
 
 
     const handleSocketEvents = () => {
@@ -18,8 +21,7 @@ const ChatController = ({ isLoading, setIsLoading, setIsRecordingEnabled }) => {
             setIsLoadingBot(true);
           
         });
-      
-      
+             
         socket.on('receive-Mp3', (data, chatAnswer) => {
             console.log('receive-Mp3 event triggered');
             const message = chatAnswer
@@ -60,12 +62,17 @@ const ChatController = ({ isLoading, setIsLoading, setIsRecordingEnabled }) => {
     return (
         <div className="chat-controller">
             <div className="chat-controller__chatbox">
-            {messages.map((message, index) => handleMessage(message, index))}
-            {isLoading && <DotAnimation />}
-            {!isLoading && isLoadingBot && <DotAnimation />}
+                {messages.map((message, index) => handleMessage(message, index))}
+                {isLoading && <DotAnimation />}
+                {!isLoading && isLoadingBot && <DotAnimation />}
             </div>
+            <AudioRecorderComponent 
+              setIsLoading={setIsLoading} 
+              isRecordingEnabled={isRecordingEnabled} 
+              setIsRecordingEnabled={setIsRecordingEnabled} 
+            />
       </div>
     )
-}
+};
 
 export default ChatController

@@ -1,23 +1,37 @@
-import mongoose from 'mongoose';
+import findUser from './helpers/findUser.js';
+import withSession from './helpers/withSession.js';
 import Feedback from '../models/feedback.js';
-import User from '../models/user.js';
+
+
 
 const retrieveSavedFeedback = async (uid) => {
-
-    const session = await mongoose.startSession();
-    const user = await session.withTransaction(async () => {
-        const user = await User.findOne({ firebaseId: uid }).session(session);
-        if (!user) {
-            console.log('User not found.');
-            return null;
-        }
- 
+    return await withSession(async (session) => {
+        const user = await findUser(uid);
+        if (!user) return null;
         const feedback = await Feedback.findOne({ creator: user._id }).session(session);
-        if (!feedback) return null;
- 
         return feedback;
     });
+};
  
-    return user;
+const createFeedback = async (uid, feedback) => {
+    return await withSession(async (session) => {
+        const user = await findUser(uid);
+        if (!user) return null;
+        if (user.feedback.length > 0) {
+            await Feedback.deleteMany({ _id: { $in: user.feedback } });
+            user.feedback = [];
+        }
+        const newFeedback = await Feedback.create({
+            feedback: feedback,
+        });
+        user.feedback.push(newFeedback._id);
+        await user.save({ session });
+    });
+};
+
+export {
+    retrieveSavedFeedback,
+    createFeedback,
 }
+ 
  

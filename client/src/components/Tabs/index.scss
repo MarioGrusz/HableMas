@@ -1,0 +1,45 @@
+.tab-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-height: 100vh;
+  border-radius: 1.5rem;
+}
+
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 100vw;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+}
+
+.tab-button.active {
+  background-color: transparent;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.tab-content {
+  padding: 20px;
+  background-color: transparent;
+}
+
+.tab-panel {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.tab-panel.active {
+  opacity: 1;
+  visibility: visible;
+}
