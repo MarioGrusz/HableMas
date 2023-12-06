@@ -1,0 +1,29 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.feedback-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding: 3rem;
+  line-height: 2;
+  background-color: $chat-backgroundColor;
+  border-radius: $chat-borderRadious;
+
+  @include mq(phone, max) {
+    padding: 2rem 1rem;
+  }
+
+  h1 {
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+    width: 50%;
+    text-align: center;
+
+    @include mq(phone, max) {
+      width: 90%;
+    }
+  }
+}

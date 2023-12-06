@@ -5,12 +5,18 @@ import Feedback from '../models/feedback.js';
 
 
 const retrieveSavedFeedback = async (uid) => {
-    return await withSession(async (session) => {
-        const user = await findUser(uid);
-        if (!user) return null;
-        const feedback = await Feedback.findOne({ creator: user._id }).session(session);
-        return feedback;
-    });
+
+    console.log('service retrive data')
+    const user = await findUser(uid);
+    if (!user) return null;
+    const feedback = await Feedback.findOne({ creator: user._id });
+    return feedback;
+    // return await withSession(async (session) => {
+    //     const user = await findUser(uid);
+    //     if (!user) return null;
+    //     const feedback = await Feedback.findOne({ creator: user._id }).session(session);
+    //     return feedback;
+    // });
 };
  
 const createFeedback = async (uid, feedback) => {

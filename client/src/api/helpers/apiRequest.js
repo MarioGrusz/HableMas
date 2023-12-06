@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiRequest = async (url, method, token = null, data) => {
+const apiRequest = async (url, method, token = null, data = null) => {
   
     try {
 
