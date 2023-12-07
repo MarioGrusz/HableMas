@@ -36,14 +36,10 @@ const createNewFeedbackController = async (req, res, next) => {
   
 const retriveFeedbackController = async (req, res, next) => {
 
-    console.log('retriveController')
-
     try{
         const uid = req.uid;
-        console.log('feedback-uid', uid)
         const feedback = await retrieveSavedFeedback(uid);
-        console.log('feedback', feedback)
-        res.status(200).json('ok');
+        res.status(200).json(feedback)
 
     } catch (error) {
        next(error)

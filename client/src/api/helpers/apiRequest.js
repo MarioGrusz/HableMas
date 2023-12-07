@@ -17,7 +17,6 @@ const apiRequest = async (url, method, token = null, data = null) => {
             data: data,
             ...config
         });
-        
         return response.data;
     } catch (error) {
         throw new Error("There is an error with fetching data");

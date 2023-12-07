@@ -7,7 +7,7 @@
 /**
  * @method POST
  * @access privat
- * @endpoint /api/v1/feedback/new
+ * @endpoint /api/v1/feedback
 **/
 
 
@@ -18,8 +18,6 @@ const router = express.Router();
 router.use(authenticateToken);
 
 router.route("/").get(retriveFeedbackController);
-router.route("/new").post(createNewFeedbackController);
-
-
+router.route("/").post(createNewFeedbackController);
 
 export default router;

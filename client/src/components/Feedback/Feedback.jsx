@@ -6,17 +6,16 @@ import { UserAuth } from "../../context/AuthContext";
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import LoadingElement from '../LoadingElement/LoadingElement';
 
+
 const Feedback = () => {
 
   const { token } = UserAuth();
   const queryClient = useQueryClient();
 
-  console.log('token',token)
 
   const { data: feedback, isLoading, isFetching } = useQuery({
     queryKey: ['feedback'],
     queryFn: () => getLatestFeedback(token),
-    initialData: [],
   });
 
   const { mutate: getNewFeedbackMutation, isLoading: mutationIsLoading } = useMutation({
@@ -25,9 +24,10 @@ const Feedback = () => {
       queryClient.invalidateQueries(['feedback'])
     }
   });
- 
 
+ 
   return (
+
 
     <div className='feedback-wrapper'>
 
@@ -38,13 +38,15 @@ const Feedback = () => {
       backgroundColor='transparent' color='black' border='1px solid black' 
       />
 
-      {isLoading || isFetching  || mutationIsLoading ? (
+      {isLoading || isFetching || mutationIsLoading  ? (
         <LoadingElement />
       ) : (
         <> 
           {feedback && <div>{formatRawFeedbackData(feedback)}</div>}
         </>
-      )}
+      )}  
+
+  
     </div>
   );
 };

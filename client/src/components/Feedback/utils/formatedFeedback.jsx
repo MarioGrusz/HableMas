@@ -1,11 +1,11 @@
 const formatRawFeedbackData = (data) => {
 
-  if (!data || !data[0]) {
+  if (!data) {
     return null;
   }
 
-  const feedbackData = data[0]?.feedback || [];
-  const feedbackDate = data[0]?.date || [];
+  const feedbackData = data?.feedback[0] || [];
+  const feedbackDate = data?.date || [];
 
     
   const formattedFeedback = feedbackData.map((message, index) => {
