@@ -14,13 +14,18 @@ const TabButton = ({ text, content, onClick, activeTab, id }) => {
         setIsActive(false);
     };
 
+    const handleClick = () => {
+        onClick()
+        setIsActive(current => !current);
+    };
+
     const buttonStyle = {
         
     };
 
     return (
         <span
-            onClick={onClick} onMouseOver={handleMouseOver} 
+            onClick={handleClick} onMouseOver={handleMouseOver} 
             onMouseOut={handleMouseOut} 
             style={buttonStyle}
             className={`animated-button ${activeTab === id ? 'tab-active' : ''}`} 

@@ -30,7 +30,7 @@ const getLatestFlashcardSetController = async (req, res, next) => {
 
 /**
  * @desc   get flashcardSet by id
- * @route  POST /api/v1/flashcard/id
+ * @route  GET /api/v1/flashcard/:id
  * @access private
 */
   
@@ -38,9 +38,9 @@ const getLatestFlashcardSetController = async (req, res, next) => {
 const getFlashcardSetByIdController = async (req, res, next) => {
   
     try{
-        const  { id } = req.body;
+        const productId = req.params.id
         const uid = req.uid;
-        const flashcardSet = await getFlashcardSetById(uid, id);
+        const flashcardSet = await getFlashcardSetById(uid, productId);
         res.status(200).json(flashcardSet);
   
     } catch (error) {
@@ -60,7 +60,7 @@ const getFlashcardSetByIdController = async (req, res, next) => {
 const getAllFlashcardHeadersController = async (req, res, next) => {
   
     try{
-        const  { id } = req.body;
+        const uid = req.uid;
         const flashcardSetDates = await getAllFlashcardSetDateHeaders(uid);
         res.status(200).json(flashcardSetDates);
   
@@ -79,10 +79,9 @@ const getAllFlashcardHeadersController = async (req, res, next) => {
   
   
 const createFlashcardSetAndSaveController = async (req, res, next) => {
-  
-  
+   
     try{
-        const  { id } = req.body;
+        const uid = req.uid;
         const flashcardSet = await createFlashcardSet(uid);
         res.status(200).json({ message: 'flashcardSet added'});
   

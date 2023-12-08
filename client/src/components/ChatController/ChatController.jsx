@@ -32,7 +32,8 @@ const ChatController = () => {
             const audio = new Audio(url);
             setIsLoadingBot(false);
             audio.play();
-            audio.onended = () => setIsRecordingEnabled(true)
+            setIsRecordingEnabled(true)
+            //audio.onended = () => setIsRecordingEnabled(true)
       
         });
       

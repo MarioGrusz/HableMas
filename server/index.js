@@ -32,7 +32,7 @@ const PORT = process.env.PORT || 5000;
 app.use("/api/v1/audio", audioRouter);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/feedback", feedbackRouter);
-// app.use("/api/v1/flashcard", flashcardRouter);
+app.use("/api/v1/flashcard", flashcardRouter);
 app.use(errorHandler)
 
 app.get("/", (req, res) => {

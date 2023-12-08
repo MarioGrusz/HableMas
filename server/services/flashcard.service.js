@@ -5,6 +5,25 @@ import FlashcardSet from '../models/flashcardSet.js';
 import { extractFlashcardSet } from '../utils/extractFlascardSet.js';
 
 
+const getFeedbackAndExtractFlashcards = async (user) => {
+    try{
+
+        return await withSession(async (session) => {
+            if (!user) return null;
+    
+            const feedback = await Feedback.find({ _id: { $in: user.feedback } }).session(session);
+            if(!feedback) return;
+            const flashcardSet = extractFlashcardSet(feedback[0].feedback);
+            return flashcardSet;     
+        })      
+    
+
+    } catch (error){
+        console.log(error)
+    }
+};
+
+
 
 const createFlashcardSet = async (uid) => {
 
@@ -12,13 +31,18 @@ const createFlashcardSet = async (uid) => {
         const user = await findUser(uid);
         if (!user) return null;
 
-        const feedback = await Feedback.find({ _id: { $in: user.feedback } }).session(session);
+        const feedback = await Feedback.find({ _id: { $in: user.feedback } });
         if(!feedback) return;
         const flashcardSet = extractFlashcardSet(feedback[0].feedback);
-        const newFlashcard = await FlashcardSet.create({
-            arrayOfObjects: flashcardSet,
-        }).session(session);
-        user.allFlashcardSets.push(newFlashcard._id).session(session);
+
+        
+        // Create a new FlashcardSet document
+        let flashcardSetDocument = await FlashcardSet.create({
+            creator: user._id,
+            arrayOfObjects: flashcardSet
+        });
+
+        user.allFlashcardSets.push(flashcardSetDocument._id);
         await user.save({ session });
         
     })
@@ -34,10 +58,12 @@ const retriveLatestFlashcardSet = async (uid) => {
         const flashcardSet = await FlashcardSet.findOne(
             { _id: { $in: user.allFlashcardSets } },
         ).sort({ 'created_at': -1 }).session(session);
+        if (!flashcardSet) return 'no flashcards yet';
         return flashcardSet
     })
   
 };
+
 
 const getFlashcardSetById = async (uid, idDate) => {
 

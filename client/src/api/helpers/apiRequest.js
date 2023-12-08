@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiRequest = async (url, method, token = null, data = null) => {
+const apiRequest = async (url, method, token = null, data = null, params = null) => {
   
     try {
 
@@ -10,6 +10,10 @@ const apiRequest = async (url, method, token = null, data = null) => {
             }
         };
 
+        
+        if (params) {
+            config.params = params;
+        };
 
         const response = await axios({
             method: method,

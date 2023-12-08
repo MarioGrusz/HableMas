@@ -10,6 +10,12 @@
  * @endpoint /api/v1/flashcard/date
 **/
 
+/**
+ * @method GET
+ * @access private
+ * @endpoint /api/v1/flashcard/:id
+**/
+
 
 /**
  * @method POST
@@ -17,11 +23,7 @@
  * @endpoint /api/v1/flashcard/new
 **/
 
-/**
- * @method POST
- * @access private
- * @endpoint /api/v1/flashcard/id
-**/
+
 
 
 import express from 'express';
@@ -41,7 +43,7 @@ router.use(authenticateToken);
 router.route("/").get(getLatestFlashcardSetController);
 router.route("/date").get(getAllFlashcardHeadersController);
 
-router.route("/id").post(getFlashcardSetByIdController);
+router.route("/:id").get(getFlashcardSetByIdController);
 router.route("/new").post(createFlashcardSetAndSaveController);
 
 export default router
