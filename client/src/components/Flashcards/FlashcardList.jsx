@@ -1,5 +1,5 @@
 import './index.scss';
-import Flashcard from './Flashcards';
+import Flashcard from './Flashcard';
 import { useQuery, useMutation, useQueryClient, useQueries } from 'react-query';
 import { getLatestFlashcardSet, createNewFlashcardSet, getFlashcardsDateHeaders, getFlashcardSetById } from '../../api/apiFlashcard';
 import { UserAuth } from '../../context/AuthContext';
