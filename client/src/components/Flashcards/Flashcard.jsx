@@ -1,43 +1,63 @@
-import './index.scss'
-import { useEffect, useRef, useState } from 'react'
+import './index.scss';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import ReactCardFlip from 'react-card-flip';
 
 const Flashcard = ({ flashcard }) => {
+ const [isFlipped, setIsFlipped] = useState(false);
+ const [height, setHeight] = useState(100);
 
+ const handleClick = () => {
+   setIsFlipped(!isFlipped);
+ };
 
-  const [flip, setFlip] = useState(false);
-  const [height, setHeight] = useState('initial');
+ const frontElement = useRef();
+ const backElement = useRef();
 
-  const frontElement = useRef();
-  const backElement = useRef();
+ const getHeight = useCallback(() => {
+   const frontHeight = frontElement.current.getBoundingClientRect().height;
+   const backHeight = backElement.current.getBoundingClientRect().height;
+   return Math.max(frontHeight, backHeight, 100);
+ }, [flashcard.spanishWord, flashcard.englishTranslation]);
 
-  const setMaxHeight = () => {
-    const frontHeight = frontElement.current.getBoundingClientRect().height
-    const backHeight = backElement.current.getBoundingClientRect().height 
-    setHeight(Math.max(frontHeight, backHeight, 100))
-  }
+ useEffect(() => {
+   setHeight(getHeight());
+ }, [getHeight]);
 
-  useEffect(() => {
-      setMaxHeight()
-  }, [flashcard.spanishWord, flashcard.englishTranslation])
+ const cardStyles = {
+   front: {
+     height: height,
+     backgroundColor: 'white',
+     borderRadius: '0.25rem',
+     boxShadow: '0 0 5px 2px rgba(0, 0, 0, 0.3)',
+     display: 'flex',
+     justifyContent: 'center',
+     alignItems: 'center',
+     transition: 'transform 0.6s',
+     cursor: 'pointer',
+   },
+   back: {
+     height: height,
+     backgroundColor: 'lightpink',
+     borderRadius: '0.25rem',
+     boxShadow: '0 0 5px 2px rgba(0, 0, 0, 0.3)',
+     display: 'flex',
+     justifyContent: 'center',
+     alignItems: 'center',
+     transition: 'transform 0.6s',
+     cursor: 'pointer',
+   },
+ };
 
+ return (
+   <ReactCardFlip isFlipped={isFlipped} cardStyles={cardStyles} flipDirection="horizontal">
+     <div className="front" ref={frontElement} onClick={handleClick}>
+       {flashcard.spanishWord}
+     </div>
+     <div className="back" ref={backElement} onClick={handleClick}>
+       {flashcard.englishTranslation}
+     </div>
+   </ReactCardFlip>
+ );
+};
 
-  useEffect(() => {
-    window.addEventListener('resize', setMaxHeight)
-    return () => window.removeEventListener('resize', setMaxHeight)
-  }, [])
-
-  return (
-    <div
-      className={`card ${flip ? 'flip' : ''}`}
-      style={{height: height}}
-      onClick={() => setFlip(!flip)}
-    >
-      <div className="front" ref={frontElement}>
-        {flashcard.spanishWord}
-      </div>
-      <div className="back" ref={backElement}>{flashcard.englishTranslation}</div>
-    </div>
-  )
-}
-
-export default Flashcard
+export default Flashcard;
