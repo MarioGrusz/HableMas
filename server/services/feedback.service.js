@@ -1,6 +1,7 @@
 import findUser from './helpers/findUser.js';
 import withSession from './helpers/withSession.js';
 import Feedback from '../models/feedback.js';
+import { getCurrentDate } from '../utils/getCurrentDate.js';
 
 
 
@@ -17,24 +18,24 @@ const retrieveSavedFeedback = async (uid) => {
 };
 
 
-
 const createFeedback = async (uid, feedback) => {
+
     return await withSession(async (session) => {
         const user = await findUser(uid);
         if (!user) return null;
   
         let feedbackDocument = await Feedback.findOneAndUpdate(
             { creator: user._id },
-            { $push: { feedback: feedback } },
+            { $set:{ date: getCurrentDate(), feedback: feedback } },
             { new: true, upsert: true }
         );
-  
+
+        user.feedback = []
         user.feedback.push(feedbackDocument._id);
         await user.save({ session });
     });
 };
-  
-
+ 
 export {
     retrieveSavedFeedback,
     createFeedback,

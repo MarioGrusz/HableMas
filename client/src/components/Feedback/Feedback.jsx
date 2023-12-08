@@ -25,6 +25,10 @@ const Feedback = () => {
     }
   });
 
+
+  console.log('feedback', feedback.feedback)
+
+
  
   return (
 

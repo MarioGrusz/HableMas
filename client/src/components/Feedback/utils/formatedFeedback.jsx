@@ -4,7 +4,7 @@ const formatRawFeedbackData = (data) => {
     return null;
   }
 
-  const feedbackData = data?.feedback[0] || [];
+  const feedbackData = data?.feedback|| [];
   const feedbackDate = data?.date || [];
 
     

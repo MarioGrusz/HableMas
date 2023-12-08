@@ -5,7 +5,11 @@ const FeedbackSchema = new mongoose.Schema({
     feedback: { type: mongoose.Schema.Types.Mixed, required: true },
     date: { type: String, default: getCurrentDate },
     creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    created_at: { type: Date, default: Date.now } 
+}, { timestamps: true });
+
+FeedbackSchema.pre('save', function preSave(next){
+    this.date = getCurrentDate();
+    next();
 });
 
 
