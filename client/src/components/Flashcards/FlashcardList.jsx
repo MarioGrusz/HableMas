@@ -82,41 +82,35 @@ const FlashcardList = () => {
     
     return (
         <>
+            <div className='btns-container'>
+                <div className='btns-container__header-wrapper'>
+                    <label className='label' htmlFor="dateSelect">Choose FlashcardSet:</label>
+                    <select className='btns-container__header'>
+                       <option disabled>Select FlashcardSet</option>
+                       {displayDates}   
+                    </select>
+                </div>  
+                
+                <Button 
+                    text='Generate New FlashcardSet' 
+                    backgroundColor='transparent' color='black' border='1px solid black' 
+                    onClick={createNewFlashcardSetMutation}
+                    width={'30%'}
+                />
+            </div>
+     
             {flashcardData ? (
-
-                <>  
-                    <div className='btns-container'>
-                        <div className='btns-container__header-wrapper'>
-                            <label className='label' htmlFor="dateSelect">Choose FlashcardSet:</label>
-                            <select className='btns-container__header'>
-                                <option disabled>Select FlashcardSet</option>
-                                {displayDates}    
-                            </select>
-                        </div>   
-                        
-                        <Button 
-                            text='Generate New FlashcardSet'  
-                            backgroundColor='transparent' color='black' border='1px solid black' 
-                            onClick={createNewFlashcardSetMutation}
-                        />
-                    </div>
-
-                    <div className='flashcard-container'>{renderFlashcards}</div>
-                </> 
-
-                ) : (
-
+                <div className='flashcard-container'>{renderFlashcards}</div>
+            ) : (
                 <div className='no-flashcards-info-wrapper'>
                     <h1>No flashcards yet.</h1>
                     <h1>Go to Feeedback tab and</h1>
                     <h1>Generate feedback first!</h1>
                 </div>
-
-                )
-            }
-
+            )}
         </>
     )
+     
     
 };
 

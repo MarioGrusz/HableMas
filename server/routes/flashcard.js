@@ -39,6 +39,7 @@ import authenticateToken from '../middleware/auth.js';
 
 
 const router = express.Router();
+
 router.use(authenticateToken);
 
 router.use((req, res, next) => {
@@ -48,6 +49,8 @@ router.use((req, res, next) => {
 
 router.route("/")
  .get(getLatestFlashcardSetController)
+
+router.route("/new")
  .post(createFlashcardSetAndSaveController);
 
 router.route("/date")
