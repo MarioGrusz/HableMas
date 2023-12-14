@@ -37,17 +37,8 @@ import {
 } from '../controllers/flashcard.controller.js';
 import authenticateToken from '../middleware/auth.js';
 
-// const router = express.Router();
-// router.use(authenticateToken);
-
-// router.route("/").get(getLatestFlashcardSetController);
-// router.route("/date").get(getAllFlashcardHeadersController);
-
-// router.route("/:id").get(getFlashcardSetByIdController);
-// router.route("/new").post(createFlashcardSetAndSaveController);
 
 const router = express.Router();
-
 router.use(authenticateToken);
 
 router.use((req, res, next) => {

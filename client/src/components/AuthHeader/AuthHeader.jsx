@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 
 
-const AuthHeader = ({ text, handleGoBack }) => {
+const AuthHeader = ({ text }) => {
 
   return (
 

@@ -33,7 +33,6 @@ const FlashcardList = () => {
     });
 
 
-    //const selectedId = "08/12/2023 11:56:24"
     const { data: flashcardSetId, isLoading: isLoadingFlashcardId, refetch } = useQuery({
         queryKey: ['flashcardSetId', selectedId],
         queryFn: () => getFlashcardSetById(token, selectedId),
@@ -110,7 +109,7 @@ const FlashcardList = () => {
                 <div className='no-flashcards-info-wrapper'>
                     <h1>No flashcards yet.</h1>
                     <h1>Go to Feeedback tab and</h1>
-                    <h1>Generate feedback first! Venga!</h1>
+                    <h1>Generate feedback first!</h1>
                 </div>
 
                 )

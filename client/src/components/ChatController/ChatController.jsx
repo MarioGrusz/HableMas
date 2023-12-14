@@ -64,7 +64,7 @@ const ChatController = () => {
         if (storedMessages && storedMessages.length > 0) {
             setMessages(JSON.parse(storedMessages));
         } else {
-            setMessages([{ type: 'bot', message: "Hola, que tal? Soy Alejandro. Press purple mic icon to start a conversation" }]);
+            setMessages([{ type: 'bot', message: "Hola, que tal? Soy Alejandro. Press and hold purple mic icon to start a conversation" }]);
         }
     }, []);
  
