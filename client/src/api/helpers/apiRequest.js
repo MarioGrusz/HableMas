@@ -10,9 +10,8 @@ const apiRequest = async (url, method, token = null, data = null, params = null)
             }
         };
 
-        
         if (params) {
-            config.params = params;
+            url = url.replace(':id', params);
         };
 
         const response = await axios({
@@ -21,6 +20,7 @@ const apiRequest = async (url, method, token = null, data = null, params = null)
             data: data,
             ...config
         });
+
         return response.data;
     } catch (error) {
         throw new Error("There is an error with fetching data");

@@ -7,6 +7,8 @@ import {
     signInWithPopup,
     signOut,
     onAuthStateChanged,
+    setPersistence,
+    browserSessionPersistence,
 } from 'firebase/auth';
 import { auth } from "../config/firebase.config";
 import { createUserInDatabse } from "../api/apiUser";
@@ -17,6 +19,7 @@ export const AuthContextProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
+    const [loadingContext, setLoadingContext] = useState(true);
     const [snackbar, setSnackbar] = useState({ show: false, message: '', type: '' });
 
     const showSnackbar = (message, type ) => {
@@ -48,7 +51,8 @@ export const AuthContextProvider = ({ children }) => {
     const signIn = async (email, password) => {
       
         try {
-          await signInWithEmailAndPassword(auth, email, password)
+            await setPersistence(auth, browserSessionPersistence);
+            await signInWithEmailAndPassword(auth, email, password)
         } catch (error) {
           
           console.error('Sign-in error:', error);
@@ -59,6 +63,7 @@ export const AuthContextProvider = ({ children }) => {
         const provider = new GoogleAuthProvider();
         
         try {
+            await setPersistence(auth, browserSessionPersistence);
             const userCredential = await signInWithPopup(auth, provider);
             const user = userCredential.user;
         
@@ -74,6 +79,7 @@ export const AuthContextProvider = ({ children }) => {
         const provider = new FacebookAuthProvider();
 
         try {
+            await setPersistence(auth, browserSessionPersistence);
             const userCredential = await signInWithRedirect(auth, provider)
             const user = userCredential.user
 
@@ -95,21 +101,28 @@ export const AuthContextProvider = ({ children }) => {
         return sendPasswordResetEmail(auth, email)
     };
 
-
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-          if (currentUser) {
-            currentUser.getIdToken().then((idToken) => {
-              setUser(currentUser);
-              setToken(idToken);
+        setPersistence(auth, browserSessionPersistence)
+          .then(() => {
+            const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+              if (currentUser) {
+                currentUser.getIdToken().then((idToken) => { //put true getIdToken(true)
+                  setUser(currentUser);
+                  setToken(idToken);
+                });
+              } else {
+                setUser(null);
+                setToken(null);
+              }
+              setLoadingContext(false);
             });
-          } else {
-            setUser(null);
-            setToken(null);
-          }
-        });
-    
-        return () => unsubscribe();
+      
+            return () => unsubscribe();
+          })
+          .catch((error) => {
+
+            console.error('Error setting persistence:', error);
+          });
     }, []);
 
 
@@ -130,7 +143,7 @@ export const AuthContextProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider value={value}>
-            {children}
+            {!loadingContext && children}
         </AuthContext.Provider>
     )
 };

@@ -16,6 +16,8 @@ import {
   
 const getLatestFlashcardSetController = async (req, res, next) => {
 
+    console.log('getLatestFlashcardSetController')
+
     try{
         const uid = req.uid;
         const flashcardSet = await retriveLatestFlashcardSet(uid);
@@ -38,8 +40,9 @@ const getLatestFlashcardSetController = async (req, res, next) => {
 const getFlashcardSetByIdController = async (req, res, next) => {
   
     try{
-        const productId = req.params.id
+        const productId =  decodeURIComponent(req.params.id);
         const uid = req.uid;
+        console.log({uid, productId})
         const flashcardSet = await getFlashcardSetById(uid, productId);
         res.status(200).json(flashcardSet);
   

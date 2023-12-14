@@ -4,8 +4,8 @@
 .chat-controller {
   height: 100vh;
   overflow-y: hidden;
-  border-radius: $chat-borderRadious;
-  background-color: $chat-2nd-backgroundColor;
+  border-radius: $chat-border-radius;
+  background-color: $chat-2nd-background;
   margin-left: 1rem;
 
   @include mq(phone, max) {

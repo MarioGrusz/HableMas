@@ -5,25 +5,6 @@ import FlashcardSet from '../models/flashcardSet.js';
 import { extractFlashcardSet } from '../utils/extractFlascardSet.js';
 
 
-const getFeedbackAndExtractFlashcards = async (user) => {
-    try{
-
-        return await withSession(async (session) => {
-            if (!user) return null;
-    
-            const feedback = await Feedback.find({ _id: { $in: user.feedback } }).session(session);
-            if(!feedback) return;
-            const flashcardSet = extractFlashcardSet(feedback[0].feedback);
-            return flashcardSet;     
-        })      
-    
-
-    } catch (error){
-        console.log(error)
-    }
-};
-
-
 
 const createFlashcardSet = async (uid) => {
 

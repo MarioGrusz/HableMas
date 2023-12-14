@@ -9,8 +9,8 @@
 
   padding: 3rem;
   line-height: 2;
-  background-color: $chat-backgroundColor;
-  border-radius: $chat-borderRadious;
+  background-color: $chat-background;
+  border-radius: $chat-border-radius;
 
   @include mq(phone, max) {
     padding: 2rem 1rem;

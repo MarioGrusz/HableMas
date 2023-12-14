@@ -12,6 +12,7 @@ const ChatController = () => {
     const [isRecordingEnabled, setIsRecordingEnabled] = useState(true)
 
 
+
     const handleSocketEvents = () => {
 
         socket.on('receive-transcription', (message) => {
@@ -28,7 +29,11 @@ const ChatController = () => {
             
             const blob = new Blob([data], { type: 'audio/mp3' });
             const url = URL.createObjectURL(blob);
-            setMessages((prevMessages) => [...prevMessages, { type: 'bot', message, url }]);
+            setMessages((prevMessages) => {
+                const newMessages = [...prevMessages, { type: 'bot', message, url }];
+                localStorage.setItem('messages', JSON.stringify(newMessages));
+                return newMessages;
+            });
             const audio = new Audio(url);
             setIsLoadingBot(false);
             audio.play();
@@ -54,11 +59,15 @@ const ChatController = () => {
 
     useEffect(handleSocketEvents, [socket]);
 
-
     useEffect(() => {
-        // Add initial bot message to messages array
-        setMessages([{ type: 'bot', message: "Hola, que tal? Soy Alejandro. Press purple mic icon to start a conversation" }]);
+        const storedMessages = localStorage.getItem('messages') || [];
+        if (storedMessages && storedMessages.length > 0) {
+            setMessages(JSON.parse(storedMessages));
+        } else {
+            setMessages([{ type: 'bot', message: "Hola, que tal? Soy Alejandro. Press purple mic icon to start a conversation" }]);
+        }
     }, []);
+ 
   
     return (
         <div className="chat-controller">

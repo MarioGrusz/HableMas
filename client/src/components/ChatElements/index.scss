@@ -40,7 +40,7 @@
   &__chatbot-message,
   &__user-message {
     background: #ffffff;
-    color: $color-black;
+    color: $text-primary;
     align-self: flex-start;
     display: flex;
     flex-direction: column;
@@ -55,17 +55,16 @@
     &:after {
       left: -26px;
       width: 26px;
-      background-color: $chat-2nd-backgroundColor;
+      background-color: $chat-2nd-background;
       border-bottom-right-radius: 10px;
     }
   }
 
   &__user-message {
-    //background-color: #0b93f6;
-    background-color: $chat-userBubbleColor;
+    background-color: $chat-user-bubble;
 
     &:before {
-      background-color: $chat-userBubbleColor;
+      background-color: $chat-user-bubble;
     }
   }
 
@@ -83,8 +82,8 @@
     width: 10px;
     height: 10px;
     border-radius: 5px;
-    background-color: #9880ff;
-    color: #9880ff;
+    background-color: $dots-color;
+    color: $dots-color;
     animation: dot-flashing 1s infinite linear alternate;
     animation-delay: 0s;
     animation-delay: 0.5s;
@@ -102,8 +101,8 @@
       width: 10px;
       height: 10px;
       border-radius: 5px;
-      background-color: $chat-userBubbleColor;
-      color: $chat-userBubbleColor;
+      background-color: $chat-user-bubble;
+      color: $chat-user-bubble;
       animation: dot-flashing 1s infinite alternate;
       animation-delay: 0s;
       animation-delay: 0s;
@@ -114,8 +113,8 @@
       width: 10px;
       height: 10px;
       border-radius: 5px;
-      background-color: $chat-userBubbleColor;
-      color: $chat-userBubbleColor;
+      background-color: $chat-user-bubble;
+      color: $chat-user-bubble;
       animation: dot-flashing 1s infinite alternate;
       animation-delay: 0s;
       animation-delay: 1s;
@@ -125,7 +124,7 @@
 
 @keyframes dot-flashing {
   0% {
-    background-color: $chat-userBubbleColor;
+    background-color: $chat-user-bubble;
   }
   50%,
   100% {

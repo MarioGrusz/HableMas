@@ -27,6 +27,8 @@ const queryClient = new QueryClient({
       refetchOnmount: false,
       refetchOnReconnect: false,
       staleTime: 1000 * 60 * 5 
+      // staleTime: 0, // data is considered fresh until it's refetched
+      // cacheTime: 0, // unused data is removed from cache immediately
     },
   },
 });

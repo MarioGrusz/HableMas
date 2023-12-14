@@ -4,7 +4,7 @@ import { useQuery, useMutation, useQueryClient, useQueries } from 'react-query';
 import { getLatestFlashcardSet, createNewFlashcardSet, getFlashcardsDateHeaders, getFlashcardSetById } from '../../api/apiFlashcard';
 import { UserAuth } from '../../context/AuthContext';
 import LoadingElement from '../LoadingElement/LoadingElement';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 
 
@@ -18,8 +18,8 @@ const FlashcardList = () => {
     const { data: flashcardSet, isLoading: isLoadingFlashcard, isFetching } = useQuery({
         queryKey: ['flashcardSet'],
         queryFn: () => getLatestFlashcardSet(token),
-        onSuccess: (flashcardSet) => {
-            console.log(flashcardSet)
+        onSuccess : (flashcardSet) => {
+            console.log('set', flashcardSet)
         }
     });
 
@@ -27,12 +27,19 @@ const FlashcardList = () => {
     const { data: datesArray, isLoading: isLoadingdates } = useQuery({
         queryKey: ['datesArray'],
         queryFn: () => getFlashcardsDateHeaders(token),
+        onSuccess: (datesArray) => {
+            console.log('dates',datesArray)
+        }
     });
 
 
+    //const selectedId = "08/12/2023 11:56:24"
     const { data: flashcardSetId, isLoading: isLoadingFlashcardId, refetch } = useQuery({
         queryKey: ['flashcardSetId', selectedId],
-        queryFn: () => getFlashcardSetById(user, selectedId),
+        queryFn: () => getFlashcardSetById(token, selectedId),
+        onSuccess:(flashcardSetId) => {
+            console.log('ID', flashcardSetId)
+        },
         enabled: !!selectedId
         
     });
@@ -41,6 +48,7 @@ const FlashcardList = () => {
 
     const handleOptionClick = (id) => {
         setSelectedId(id);
+        console.log(id)
     };
 
 
@@ -111,6 +119,6 @@ const FlashcardList = () => {
         </>
     )
     
-}
+};
 
 export default FlashcardList

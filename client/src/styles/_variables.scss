@@ -1,43 +1,28 @@
-//LATER TAKE CARE OF VARIABLES, ORDER IT
-$color-main: #f8f3df;
-$color-black: #000000;
-$color-orange: #ef445c;
-$color-grey: #e9e9e9;
+// Brand colors
+$brand-primary: white;
+$brand-secondary: #ef445c;
 
+// Text colors
+$text-primary: #000000;
+$text-secondary: #e9e9e9;
+
+// Colors
 $grey-color: #bbb;
-$black-color: #151111;
 $blue-color: #0065ff;
 $white-color: #fff;
-$text-small: 0.8rem;
+
+// Element dimensions
 $element-max-width: 260px;
 $auth-container-width: 1020px;
+$text-small: 0.8rem;
 
-$chat-backgroundColor: #f8f2fc;
-$chat-2nd-backgroundColor: #aac1cf;
-$chat-borderRadious: 1.5rem;
-$chat-userBubbleColor: #ba80e6;
+// Chat styles
+$chat-background: #f8f2fc;
+$chat-2nd-background: #aac1cf;
+$chat-border-radius: 1.5rem;
+$chat-user-bubble: #ba80e6;
+$dots-color: #9880ff;
 
-$auth-button-backgroundColor: #f1f5f6;
-$auth-button-color: #344563;
-
-// // Brand colors
-// $brand-primary: #f8f3df;
-// $brand-secondary: #ef445c;
-
-// // Text colors
-// $text-primary: #000000;
-// $text-secondary: #e9e9e9;
-
-// // Element dimensions
-// $element-max-width: 260px;
-// $auth-container-width: 1020px;
-
-// // Chat styles
-// $chat-background: #f8f2fc;
-// $chat-2nd-background: #aac1cf;
-// $chat-border-radius: 1.5rem;
-// $chat-user-bubble: #ba80e6;
-
-// // Auth button styles
-// $auth-button-background: #f1f5f6;
-// $auth-button-text: #344563;
+// Auth button styles
+$auth-button-background: #f1f5f6;
+$auth-button-text: #344563;
