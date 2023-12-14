@@ -1,3 +1,4 @@
+import '../styles/auth.scss';
 import AuthHeader from '../components/AuthHeader/AuthHeader'
 import signupImage from '../assets/signUp.png';
 import { useState } from 'react';

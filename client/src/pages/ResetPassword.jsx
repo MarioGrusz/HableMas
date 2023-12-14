@@ -1,3 +1,4 @@
+import '../styles/auth.scss';
 import AuthHeader from '../components/AuthHeader/AuthHeader'
 import resetImage from '../assets/reset.png';
 import { useState } from 'react';
