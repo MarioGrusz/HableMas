@@ -16,8 +16,6 @@ import {
   
 const getLatestFlashcardSetController = async (req, res, next) => {
 
-    console.log('getLatestFlashcardSetController')
-
     try{
         const uid = req.uid;
         const flashcardSet = await retriveLatestFlashcardSet(uid);

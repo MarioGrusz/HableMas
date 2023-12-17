@@ -3,15 +3,60 @@ import './index.scss';
 import socket from '../../socket/socket';
 import { UserMessage, ChatBotMessage, DotAnimation } from '../ChatElements/ChatElements';
 import AudioRecorderComponent from '../AudioRecorder/AudioRecorder';
+import { saveMessageToDataBase, getLastConversation } from '../../api/apiMessage';
+import { UserAuth } from '../../context/AuthContext';
+import { useQuery } from 'react-query';
+
 
 const ChatController = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadingBot, setIsLoadingBot] = useState(false);
     const [messages, setMessages] = useState([]);
-    const [isRecordingEnabled, setIsRecordingEnabled] = useState(true)
+    const [isRecordingEnabled, setIsRecordingEnabled] = useState(true);
+    const { token } = UserAuth();
+    const initialMessage = { type: 'bot', message: "Hola, que tal? Soy Alejandro. Press and hold purple mic icon to start a conversation" }
+    
+    console.log('USEEFFECT',messages)
 
-
+    const { data , isLoading: isLoadingLastConversation, isFetching } = useQuery(
+        ['messages'],
+        () => getLastConversation(token),
+        { 
+            refetchOnWindowFocus: true,
+            staleTime: 0,
+            onSuccess: (data) => {
+             
+                if(data){
+                    const messages = data.messages;
+                    const newMessages = messages?.map((message, index) => {
+                        if(message.type === 'bot' && message.audio) {
+        
+                            let bufferObject = message.audio;
+                            let arrayBuffer = new ArrayBuffer(bufferObject.data.length);
+                            let typedArray = new Uint8Array(arrayBuffer);
+                            for (let i = 0; i < bufferObject.data.length; ++i) {
+                                typedArray[i] = bufferObject.data[i];
+                            }
+                            const blob = new Blob([arrayBuffer], { type: 'audio/mp3' });
+                            const url = URL.createObjectURL(blob);
+        
+                            return { ...message, url };
+        
+                        }  
+                        return message;
+        
+                    }); 
+    
+                    !data?.messages ? setMessages([initialMessage]) : setMessages(newMessages)
+                    
+                }       
+            }
+        },
+       
+        
+    );
+       
 
     const handleSocketEvents = () => {
 
@@ -20,24 +65,23 @@ const ChatController = () => {
             setMessages((prevMessages) => [...prevMessages, { type: 'user', message }]);
             setIsLoading(false)
             setIsLoadingBot(true);
+            saveMessageToDataBase(token, { type: 'user', message })
           
         });
              
         socket.on('receive-Mp3', (data, chatAnswer) => {
             console.log('receive-Mp3 event triggered');
-            const message = chatAnswer
+            const message = chatAnswer;
             
             const blob = new Blob([data], { type: 'audio/mp3' });
             const url = URL.createObjectURL(blob);
-            setMessages((prevMessages) => {
-                const newMessages = [...prevMessages, { type: 'bot', message, url }];
-                localStorage.setItem('messages', JSON.stringify(newMessages));
-                return newMessages;
-            });
+            setMessages((prevMessages) => [...prevMessages, { type: 'bot', message, url }]);
             const audio = new Audio(url);
             setIsLoadingBot(false);
             audio.play();
-            setIsRecordingEnabled(true)
+            setIsRecordingEnabled(true);
+            saveMessageToDataBase(token, { type: 'bot', message, url })
+
             //audio.onended = () => setIsRecordingEnabled(true)
       
         });
@@ -59,20 +103,13 @@ const ChatController = () => {
 
     useEffect(handleSocketEvents, [socket]);
 
-    useEffect(() => {
-        const storedMessages = localStorage.getItem('messages') || [];
-        if (storedMessages && storedMessages.length > 0) {
-            setMessages(JSON.parse(storedMessages));
-        } else {
-            setMessages([{ type: 'bot', message: "Hola, que tal? Soy Alejandro. Press and hold purple mic icon to start a conversation" }]);
-        }
-    }, []);
+ 
  
   
     return (
         <div className="chat-controller">
             <div className="chat-controller__chatbox">
-                {messages.map((message, index) => handleMessage(message, index))}
+                {messages?.map((message, index) => handleMessage(message, index))}
                 {isLoading && <DotAnimation />}
                 {!isLoading && isLoadingBot && <DotAnimation />}
             </div>

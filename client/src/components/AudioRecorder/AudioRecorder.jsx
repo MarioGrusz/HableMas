@@ -85,10 +85,11 @@ const AudioRecorderComponent = ({ setIsLoading, isRecordingEnabled, setIsRecordi
 
       const formData = new FormData();
       formData.append('audio', audioBlob, 'audio.wav');
+      setIsLoading(true);
 
       try {
         const response = await axios.post(`${BASE_URL}/audio`, formData, { headers });
-        setIsLoading(true);
+        
         setIsRecordingEnabled(false)
         socket.emit('get-transcription');
       } catch (error) {

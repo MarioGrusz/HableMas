@@ -18,18 +18,18 @@ const FlashcardList = () => {
     const { data: flashcardSet, isLoading: isLoadingFlashcard, isFetching } = useQuery({
         queryKey: ['flashcardSet'],
         queryFn: () => getLatestFlashcardSet(token),
-        onSuccess : (flashcardSet) => {
-            console.log('set', flashcardSet)
-        }
+        // onSuccess : (flashcardSet) => {
+        //     console.log('set', flashcardSet)
+        // }
     });
 
 
     const { data: datesArray, isLoading: isLoadingdates } = useQuery({
         queryKey: ['datesArray'],
         queryFn: () => getFlashcardsDateHeaders(token),
-        onSuccess: (datesArray) => {
-            console.log('dates',datesArray)
-        }
+        // onSuccess: (datesArray) => {
+        //     console.log('dates',datesArray)
+        // }
     });
 
 
@@ -61,7 +61,7 @@ const FlashcardList = () => {
     });
 
 
-    if (mutationIsLoading) return <LoadingElement />
+    if (mutationIsLoading, isLoadingFlashcard, isLoadingFlashcardId) return <LoadingElement />
 
 
     const displayDates = 
