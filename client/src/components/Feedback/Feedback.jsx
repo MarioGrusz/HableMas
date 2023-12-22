@@ -34,7 +34,7 @@ const Feedback = () => {
       onClick={getNewFeedbackMutation}
       disabled={mutationIsLoading} 
       text='Generate New Feedback'  
-      backgroundColor='transparent' color='black' border='1px solid black' 
+      backgroundColor='white' color='black' border='1px solid black' 
       />
 
       {isLoading || isFetching || mutationIsLoading  ? (

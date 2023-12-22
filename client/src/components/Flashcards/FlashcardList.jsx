@@ -8,6 +8,11 @@ import { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 
 
+import Select from "react-select";
+
+
+
+
 const FlashcardList = () => {
 
     const { token } = UserAuth();
@@ -51,6 +56,7 @@ const FlashcardList = () => {
     };
 
 
+
     const { mutateAsync: createNewFlashcardSetMutation, isLoading: mutationIsLoading } = useMutation({
         mutationFn: () => createNewFlashcardSet(token),
         onSuccess: () => {
@@ -74,6 +80,30 @@ const FlashcardList = () => {
         
     });
 
+    const dateOptions = displayDates?.map(date => ({ value: date, label: date }));
+
+
+    const customStyles = {
+        option: (defaultStyles, state) => ({
+          ...defaultStyles,
+          color: state.isSelected ? "#212529" : "black",
+          backgroundColor: state.isSelected ? "grey" : "#ffedd2",
+        }),
+    
+        control: (defaultStyles) => ({
+          ...defaultStyles,
+          backgroundColor: "white",
+          padding: "5px",
+          width:'15rem',
+          border: "none",
+          borderRadius: '15px',
+          boxShadow: "none",
+        }),
+        singleValue: (defaultStyles) => ({ ...defaultStyles, color: "black" }),
+    };
+
+
+
 
     const renderFlashcards = flashcardData?.map(flashcard => {
         return <Flashcard flashcard={flashcard} key={flashcard.id}/>
@@ -81,19 +111,24 @@ const FlashcardList = () => {
    
     
     return (
-        <>
+        <section className='flashcard-wrapper'>
             <div className='btns-container'>
                 <div className='btns-container__header-wrapper'>
-                    <label className='label' htmlFor="dateSelect">Choose FlashcardSet:</label>
-                    <select className='btns-container__header'>
+                    {/* <label className='label' htmlFor="dateSelect">Choose FlashcardSet:</label> */}
+                    {/* <select className='btns-container__header'>
                        <option disabled>Select FlashcardSet</option>
                        {displayDates}   
-                    </select>
+                    </select> */}
+                    <Select placeholder="Choose flashcard set" options={dateOptions} onChange={handleOptionClick}  styles={customStyles} />
                 </div>  
+
+                
+
+
                 
                 <Button 
                     text='Generate New FlashcardSet' 
-                    backgroundColor='transparent' color='black' border='1px solid black' 
+                    backgroundColor='white' color='black' border='1px solid white' 
                     onClick={createNewFlashcardSetMutation}
                     width={'30%'}
                 />
@@ -108,7 +143,7 @@ const FlashcardList = () => {
                     <h1>Generate feedback first!</h1>
                 </div>
             )}
-        </>
+        </section>
     )
      
     

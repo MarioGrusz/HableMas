@@ -6,7 +6,6 @@
   overflow-y: hidden;
   border-radius: $chat-border-radius;
   background-color: $chat-2nd-background;
-  margin-left: 1rem;
 
   @include mq(phone, max) {
     margin-left: 0;
@@ -17,7 +16,7 @@
     height: 100vh;
     padding: 50px;
 
-    padding: 60px 60px;
+    //padding: 60px 60px;
     box-shadow: 5px 10px 40px rgba(0, 0, 0, 0.06);
     text-align: center;
     overflow-x: hidden;

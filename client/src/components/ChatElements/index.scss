@@ -7,8 +7,10 @@
   align-items: flex-end;
 
   &__avatar {
-    height: 35px;
-    width: 35px;
+    height: 2.2rem;
+    width: 2.2rem;
+    min-height: 2.2rem;
+    min-width: 2.2rem;
     overflow: hidden;
     border-radius: 50%;
     margin-right: 0.5rem;
@@ -20,7 +22,7 @@
   }
 
   &__text {
-    max-width: 255px;
+    //max-width: 255px;
     word-wrap: break-word;
     margin-bottom: 12px;
     line-height: 24px;

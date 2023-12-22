@@ -37,7 +37,7 @@ const ChatHeader = ({ setMessages, text }) => {
             <span className='chat-header__question'>Hi {user.displayName}!</span>
             <span className='chat-header__question'>Do you want to chat today?</span>
         </div>
-        <Button id="logout-button" onClick={handleSignout} text="Log Out" backgroundColor='transparent' color='black' border='1px solid black' width='20%'/> 
+        <Button id="logout-button" onClick={handleSignout} text="Log Out" backgroundColor='white' color='black' border='1px solid white' width='20%'/> 
     </div>
   )
   

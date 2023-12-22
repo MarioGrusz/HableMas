@@ -12,12 +12,12 @@ body {
   color: $text-primary;
   height: 100vh;
   min-height: 100vh;
+
+  background-color: $light-black;
 }
 
 .home-container {
-  background-image: radial-gradient(#e8e9ea 2px, transparent 0);
-  background-size: 12px 12px;
-  padding: 0 10rem;
+  padding: 1rem 10rem 0 10rem;
 
   @include mq(phone, max) {
     padding: 0;
@@ -30,6 +30,7 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 5rem;
+  background-color: white;
 
   @include mq(phone, max) {
     font-size: 3rem;

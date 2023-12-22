@@ -3,7 +3,7 @@
 
 .animated-button {
   pointer-events: auto;
-  color: #e0fd60;
+  color: $purple;
   margin: 0 0 0 0.2em;
   padding: 0 2.5rem; //before 0 4.8rem
   height: 3rem;
@@ -102,12 +102,8 @@
       position: absolute;
       top: 100%;
       left: 0;
-      color: black;
+      color: $white;
       transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
   }
-}
-
-.tab-active {
-  color: green; //work on that later
 }

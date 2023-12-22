@@ -7,7 +7,16 @@ const useAudio = (url) => {
     const [audio] = useState(new Audio(url));
     const [playing, setPlaying] = useState(false);
   
-    const toggle = () => setPlaying(!playing);
+    //const toggle = () => setPlaying(!playing);
+
+    const toggle = () => {
+      if (playing) {
+          audio.pause();
+      } else {
+          audio.play();
+      }
+      setPlaying(!playing);
+    };
   
     useEffect(() => {
         playing ? audio.play() : audio.pause();
@@ -25,21 +34,22 @@ const useAudio = (url) => {
     return [playing, toggle];
 };
   
+//disabled={playing} for button
 
 const AudioPlayer = ({ url }) => {
   
-    const [playing, toggle] = useAudio(url);
+  const [playing, toggle] = useAudio(url);
 
-    return (
-      <div>
-        <button className='play-button' onClick={toggle} disabled={playing}>
-          {playing ? "" : ""}
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-        </svg>
-        </button>
-      </div>
-    );
+  return (
+    <div>
+      <button className='play-button' onClick={toggle} > 
+        {playing ? "" : ""}
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+      </svg>
+      </button>
+    </div>
+  );
 }
 
 export default AudioPlayer

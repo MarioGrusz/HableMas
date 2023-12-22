@@ -37,7 +37,7 @@ const Flashcard = ({ flashcard }) => {
    },
    back: {
      height: height,
-     backgroundColor: 'lightpink',
+     backgroundColor: '#cec6ff',
      borderRadius: '0.25rem',
      boxShadow: '0 0 5px 2px rgba(0, 0, 0, 0.3)',
      display: 'flex',
@@ -49,14 +49,16 @@ const Flashcard = ({ flashcard }) => {
  };
 
  return (
+  <figure onClick={handleClick}>
    <ReactCardFlip isFlipped={isFlipped} cardStyles={cardStyles} flipDirection="horizontal">
-     <div className="front" ref={frontElement} onClick={handleClick}>
+     <div className="front" ref={frontElement}>
        {flashcard.spanishWord}
      </div>
-     <div className="back" ref={backElement} onClick={handleClick}>
+     <div className="back" ref={backElement}>
        {flashcard.englishTranslation}
      </div>
    </ReactCardFlip>
+   </figure>
  );
 };
 

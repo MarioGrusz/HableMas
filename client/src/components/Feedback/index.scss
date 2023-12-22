@@ -9,7 +9,7 @@
 
   padding: 3rem;
   line-height: 2;
-  background-color: $chat-background;
+  background-color: $light-yellow;
   border-radius: $chat-border-radius;
 
   @include mq(phone, max) {
