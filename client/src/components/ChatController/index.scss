@@ -6,6 +6,8 @@
   overflow-y: hidden;
   border-radius: $chat-border-radius;
   background-color: $chat-2nd-background;
+  display: flex;
+  flex-direction: column;
 
   @include mq(phone, max) {
     margin-left: 0;

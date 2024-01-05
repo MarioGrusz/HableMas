@@ -63,7 +63,22 @@ const getLastConversation = async (uid) => {
 
 };
 
+
+const resetMessages = async (uid) => {
+    return await withSession(async (session) => {
+        const user = await findUser(uid);
+        if (!user) return null;
+ 
+        let result = await Messages.deleteMany({ creator: user._id });
+ 
+        if (result.deletedCount === 0) throw new Error('No messages found to delete');
+        return result;
+    });
+};
+ 
+
 export {
     addMessageToDatabase,
     getLastConversation,
+    resetMessages,
 }

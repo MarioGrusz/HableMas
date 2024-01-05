@@ -13,10 +13,10 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-
+  border: 1px solid hsl(246, 11%, 22%);
   border-radius: $chat-border-radius;
   height: 5rem;
-  background-color: $white;
+  //background-color: $white;
   margin: 0.5rem 0;
 }
 

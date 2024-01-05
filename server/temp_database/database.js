@@ -62,7 +62,7 @@ const storeRecentMessages = async (request_message, response_message) => {
 };
 
 
-const resetMessages = async () => {
+const resetJSONMessages = async () => {
 
     const data = JSON.stringify([]);
     try {
@@ -73,4 +73,4 @@ const resetMessages = async () => {
        
 };
 
-export { getRecentMessages, storeRecentMessages, resetMessages }
+export { getRecentMessages, storeRecentMessages, resetJSONMessages }
