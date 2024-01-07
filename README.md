@@ -1,6 +1,29 @@
 # Hable Más 
 AI Chatbot for Practicing Conversational Spanish
 
+<!-- TABLE OF CONTENTS -->
+- [Hable Más](#hable-mas)
+  - [Project Overview](#project-overview)
+  - [Features](#features)
+    - [Dynamic Conversations](#dynamic-conversations)
+    - [Specific Scenarios](#specific-scenarios)
+    - [Information about Spanish and Spanish Speaking Countries](#information-about-spanish-and-spanish-speaking-countries)
+    - [Feedback Based on Conversation](#feedback-based-on-conversation)
+    - [Flashcards Creation](#flashcards-creation)
+  - [Live Demo](#live-demo)
+  - [Project Structure](#project-structure)
+    - [Client Directory](#client-directory)
+    - [Server Directory](#server-directory)
+  - [Built With](#built-with)
+  - [Deployment](#deployment)
+  - [Getting Started](#getting-started)
+  - [Setting Up Accounts on MongoDB Firebase OpenAI and Google](#setting-up-accounts-on-mongodb-firebase-openai-and-google)
+    - [MongoDB](#mongodb)
+    - [Firebase](#firebase)
+    - [Google Text-to-Speech](#google-text-to-speech)
+    - [OpenAI](#openai)
+  - [License](#license)
+
 ## Project Overview
 
 This project is an AI chatbot designed to help language learners practice conversational Spanish. Designed to overcome the challenge of lacking conversation partners, enableusers to engage in conversations with Alejandro. Through these interactions, users can receive constructive feedback and effortlessly generate flashcards with newly acquired vocabulary.
