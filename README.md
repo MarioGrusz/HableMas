@@ -2,7 +2,8 @@
 AI Chatbot for Practicing Conversational Spanish
 
 <!-- TABLE OF CONTENTS -->
-- [Hable Más](#hable-mas)
+Table of Contents
+
   - [Project Overview](#project-overview)
   - [Features](#features)
     - [Dynamic Conversations](#dynamic-conversations)
