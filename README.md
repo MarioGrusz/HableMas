@@ -37,22 +37,46 @@ The project is divided into two main directories: client and server.
 ### Client Directory
 
 The client directory contains the React application. The structure includes:
-
-  ```  📂 client
-    ├── 📂 src
-    │   ├── 📂 api
-    │   ├── 📂 assets
-    │   ├── 📂 components
-    │   ├── 📂 config
-    │   ├── 📂 context
-    │   ├── 📂 icons
-    │   ├── 📂 pages
-    │   ├── 📂 socket
-    │   ├── 📂 styles
-    │   ├── 📜 App.jsx
-    │   └── 📜 main.jsx
-    ├── 📜 package.json
-    └── 📜 README.md
 ```
+📦 client
+ ┣ 📂 src
+ ┃ ┣ 📂 api
+ ┃ ┣ 📂 assets
+ ┃ ┣ 📂 config
+ ┃ ┣ 📂 constants
+ ┃ ┣ 📂 context
+ ┃ ┣ 📂 components
+ ┃ ┣ 📂 icons
+ ┃ ┣ 📂 pages
+ ┃ ┣ 📂 socket
+ ┃ ┣ 📂 styles
+ ┃ ┣ 📜 .env
+ ┃ ┣ 📜 index.js
+ ┗ 📜 README.md
+``` 
+
+### Server Directory
+```
+📦 server
+┣ 📂 config
+┣ 📂 controllers
+┣ 📂 middleware
+┣ 📂 models
+┣ 📂 routes
+┣ 📂 scrapers
+┣ 📂 services
+┣ 📂 temp_database
+┣ 📂 uploads
+┣ 📂 utils
+┣ 📜 index.js
+┣ 📜 socket.js
+┣ 📜 .env
+```
+## Built With
+
+<img alt="Vite" src="https://img.shields.io/badge/-Vite-646CFF?logo=vite&logoColor=white&style=for-the-badge"><img alt="React" src="https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=white&style=for-the-badge"><img alt="React Router" src="https://img.shields.io/badge/-React_Router-CA4245?logo=react-router&logoColor=white&style=for-the-badge"><img alt="React Query" src="https://img.shields.io/badge/-React_Query-000000?logo=react-query&logoColor=white&style=for-the-badge"><img alt="Firebase" src="https://img.shields.io/badge/-Firebase-FFCA28?logo=firebase&logoColor=black&style=for-the-badge">
+
+<img alt="Node.js" src="https://img.shields.io/badge/-Node.js-339933?logo=node-dot-js&logoColor=white&style=for-the-badge"><img alt="Express" src="https://img.shields.io/badge/-Express-000000?logo=express&logoColor=white&style=for-the-badge"><img alt="MongoDB" src="https://img.shields.io/badge/-MongoDB-47A248?logo=mongoDB&logoColor=white&style=for-the-badge"><img alt="Mongoose" src="https://img.shields.io/badge/-Mongoose-880000?logoColor=white&style=for-the-badge"><img alt="Firebase Admin" src="https://img.shields.io/badge/-Firebase_Admin-FFCA28?logo=firebase&logoColor=black&style=for-the-badge"><img alt="OpenAI" src="https://img.shields.io/badge/OpenAI-Test-blue?style=for-the-badge&logo=openai"><img alt="Socket.IO" src="https://img.shields.io/badge/Socket.IO-4.1.3-010101?style=for-the-badge&logo=socket-dot-io"><img alt="Google Text-to-Speech" src="https://img.shields.io/badge/Google_Text_to_Speech-Latest-4285F4?style=for-the-badge&logo=google">
+
 
 
