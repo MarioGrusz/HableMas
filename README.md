@@ -8,7 +8,7 @@ Table of Contents
   - [Features](#features)
     - [Dynamic Conversations](#dynamic-conversations)
     - [Specific Scenarios](#specific-scenarios)
-    - [Information about Spanish and Spanish Speaking Countries](#information-about-spanish-and-spanish-speaking-countries)
+    - [Spanish & Fun Facts](#spanish-&-fun-facts)
     - [Feedback Based on Conversation](#feedback-based-on-conversation)
     - [Flashcards Creation](#flashcards-creation)
   - [Live Demo](#live-demo)
@@ -39,7 +39,7 @@ Users can engage in dynamic conversations with the chatbot, Alejandro, on differ
 
 Users can request very specific scenarios, which can help them prepare for specific situations, such as business meetings or common situations they may face on vacation.
 
-### Information about Spanish and Spanish Speaking Countries
+### Spanish & Fun Facts
 
 During conversation, the chatbot provides random information about Spanish and Spanish-speaking countries, mainly focusing on Spain. The bot also uses humor and sometimes colloquial phrases to make the learning process more enjoyable and engaging.
 
