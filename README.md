@@ -85,7 +85,7 @@ The application is deployed on Netlify and Railway.
 ## Getting Started
 To get a local copy up and running follow these simple steps:
 
-lone the project
+Clone the project
 
 ```bash
   git clone https://github.com/MarioGrusz/HableMas.git
@@ -128,7 +128,7 @@ Client
 ```
 
 ## Setting Up Accounts on MongoDB Firebase OpenAI and Google
-To successfully run this project, you need to create accounts on MongoDB Firebase, Google and OpenAI. Here are the steps to follow:
+To successfully run this project, you need to create accounts on MongoDB, Firebase, Google and OpenAI. Here are the steps to follow:
 
 ### MongoDB
 
