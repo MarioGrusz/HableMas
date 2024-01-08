@@ -25,17 +25,16 @@ const TabButton = ({ text, content, onClick, activeTab, id }) => {
 
     return (
         <span
-            onClick={handleClick} onMouseOver={handleMouseOver} 
-            onMouseOut={handleMouseOut} 
+            onClick={handleClick}
             style={buttonStyle}
-            className={`animated-button ${activeTab === id ? 'tab-active' : ''}`} 
+            className={`animated-button`} 
         >
             <span className='animated-button__border'></span>
             <span className='animated-button__ripple'>
-                <span className={`${isActive ? 'active' : ''}`}></span>
+                <span className={`${activeTab === id ? 'active' : ''}`}></span>
             </span>
             <span className='animated-button__title'>
-                <span data-text={content} className={`text ${isActive ? 'active' : ''}`}>{text}</span>
+                <span data-text={content} className={`text ${activeTab === id ? 'active' : ''}`}>{text}</span>
             </span>
         </span>
     )

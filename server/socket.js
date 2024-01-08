@@ -15,7 +15,7 @@ export const setupSocketEvents = (io) => {
                 socket.emit('receive-transcription', prompt);
                 const chatAnswer = await getAssistantResponse(prompt);
                 await convertTextToMp3(chatAnswer);
-                //storeRecentMessages(prompt, chatAnswer )
+                storeRecentMessages(prompt, chatAnswer)
                 const filePath = './uploads/output.mp3';
                 const fileData = fs.readFileSync(filePath);
                 socket.emit('receive-Mp3', fileData, chatAnswer);
@@ -31,3 +31,7 @@ export const setupSocketEvents = (io) => {
        }); 
    });
 };
+
+
+
+//pass token through socket https://www.phind.com/search?cache=kmyv1g9nbhpwc10swohjypxd

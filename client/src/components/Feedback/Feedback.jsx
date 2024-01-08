@@ -1,51 +1,55 @@
-import './index.scss';
-import Button from '../Button/Button';
-import formatRawFeedbackData from './utils/formatedFeedback';
-import { getLatestFeedback, getNewFeedbackFromOpenAI } from '../../api/apiFeedback';
+import "./index.scss";
+import ButtonCircle from "../ButtonCircle/ButtonCircle";
+import formatRawFeedbackData from "./utils/formatedFeedback";
+import {
+  getLatestFeedback,
+  getNewFeedbackFromOpenAI,
+} from "../../api/apiFeedback";
 import { UserAuth } from "../../context/AuthContext";
-import { useQuery, useMutation, useQueryClient } from 'react-query';
-import LoadingElement from '../LoadingElement/LoadingElement';
-
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import LoadingElement from "../LoadingElement/LoadingElement";
 
 const Feedback = () => {
-
   const { token } = UserAuth();
   const queryClient = useQueryClient();
 
-
-  const { data: feedback, isLoading, isFetching } = useQuery({
-    queryKey: ['feedback'],
+  const {
+    data: feedback,
+    isLoading,
+    isFetching,
+  } = useQuery({
+    queryKey: ["feedback"],
     queryFn: () => getLatestFeedback(token),
   });
 
-  const { mutate: getNewFeedbackMutation, isLoading: mutationIsLoading } = useMutation({
-    mutationFn: () => getNewFeedbackFromOpenAI(token),
-    onSuccess: () => {
-      queryClient.invalidateQueries(['feedback'])
-    }
-  });
+  const { mutate: getNewFeedbackMutation, isLoading: mutationIsLoading } =
+    useMutation({
+      mutationFn: () => getNewFeedbackFromOpenAI(token),
+      onSuccess: () => {
+        queryClient.invalidateQueries(["feedback"]);
+      },
+    });
 
   return (
-
-
-    <div className='feedback-wrapper'>
-
-      <Button 
-      onClick={getNewFeedbackMutation}
-      disabled={mutationIsLoading} 
-      text='Generate New Feedback'  
-      backgroundColor='transparent' color='black' border='1px solid black' 
+    <div className="feedback-wrapper">
+      <ButtonCircle
+        onClick={getNewFeedbackMutation}
+        disabled={mutationIsLoading}
+        text="New Feedback"
+        backgroundColor="#7a5af5"
+        color="white"
+        border="none"
+        alignSelf={"flex-end"}
       />
+      {/* <p className="feedback-info">
+        Feedback will be generated based on last conversation
+      </p> */}
 
-      {isLoading || isFetching || mutationIsLoading  ? (
+      {isLoading || isFetching || mutationIsLoading ? (
         <LoadingElement />
       ) : (
-        <> 
-          {feedback && <div>{formatRawFeedbackData(feedback)}</div>}
-        </>
-      )}  
-
-  
+        <>{feedback && <div>{formatRawFeedbackData(feedback)}</div>}</>
+      )}
     </div>
   );
 };

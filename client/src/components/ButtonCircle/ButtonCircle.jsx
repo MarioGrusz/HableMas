@@ -1,6 +1,6 @@
 import "./index.scss";
 
-const Button = (props) => {
+const ButtonCircle = (props) => {
   const {
     onClick,
     disabled,
@@ -26,7 +26,7 @@ const Button = (props) => {
 
   return (
     <button
-      className="custom-button"
+      className="custom-circle-button"
       onClick={onClick}
       disabled={disabled}
       type={type}
@@ -38,4 +38,4 @@ const Button = (props) => {
   );
 };
 
-export default Button;
+export default ButtonCircle;

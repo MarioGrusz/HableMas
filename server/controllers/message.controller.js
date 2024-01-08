@@ -1,7 +1,12 @@
-import { addMessageToDatabase, getLastConversation } from "../services/message.service.js";
+import { 
+    addMessageToDatabase, 
+    getLastConversation,
+    resetMessages,
+} from "../services/message.service.js";
+import { resetJSONMessages } from "../temp_database/database.js";
 
 /**
- * @desc   get latest flashcard set
+ * @desc   add message to database
  * @route  POST /api/v1/message
  * @access private
 */
@@ -22,7 +27,7 @@ const addMessageToDatabaseController = async (req, res, next) => {
 };
 
 /**
- * @desc   get latest flashcard set
+ * @desc   get laast conversation
  * @route  GET /api/v1/message
  * @access private
 */
@@ -41,7 +46,29 @@ const getLastConversationController = async (req, res, next) => {
 };
 
 
+/**
+ * @desc   delete last conversation
+ * @route  DELETE /api/v1/message
+ * @access private
+*/
+
+const deleteLastConversationController = async (req, res, next) => {
+
+    try{
+        const uid = req.uid;
+        const deletedConversation = await resetMessages(uid);
+        resetJSONMessages();
+        res.status(200).json({message: 'conversation deleted sucessfully'})
+       
+    } catch (error) {
+        next(error)
+    }
+
+};
+
+
 export {
     addMessageToDatabaseController,
     getLastConversationController,
+    deleteLastConversationController
 }

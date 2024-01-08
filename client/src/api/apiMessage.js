@@ -13,10 +13,17 @@ const getLastConversation = async (token) => {
     if(!token) return
     return await apiRequest(`${BASE_URL}/message`, 'GET', token, null, null);
 };
+
+
+const deleteLastConversation = async (token) => {
+    if(!token) return
+    return await apiRequest(`${BASE_URL}/message`, 'DELETE', token, null, null);
+};
  
 
 export {
     saveMessageToDataBase,
     getLastConversation,
+    deleteLastConversation,
 }
 

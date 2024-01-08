@@ -8,11 +8,16 @@
   background-color: $chat-background;
   border-radius: $chat-border-radius;
 
+  //background-color: #282828;
+
+  background-color: #dadada;
+  color: black;
+  box-shadow: rgba(119, 118, 118, 0.35) 0px 5px 15px;
+
   padding: 1rem 0;
-  margin: 1rem 2rem;
+  // margin: 1rem 2rem;
 
   @include mq(tablet-wide, max) {
-    margin: 0.5rem;
     padding: 1rem;
   }
 
