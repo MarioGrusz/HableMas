@@ -27,6 +27,12 @@
   align-items: center;
   padding: 1rem 0;
 
+  @include mq(phablet, max) {
+    flex-direction: column;
+    height: 100%;
+    gap: 1rem;
+  }
+
   &__header-wrapper {
     display: flex;
     flex-direction: column;
@@ -50,6 +56,10 @@
   gap: 1rem;
   margin-top: 3rem;
   padding-bottom: 3rem;
+
+  @include mq(phablet, max) {
+    margin-top: 1rem;
+  }
 }
 
 .loading-element-wrapper {

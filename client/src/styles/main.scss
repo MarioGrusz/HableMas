@@ -11,16 +11,18 @@ body {
   color: $text-primary;
   height: 100vh;
   min-height: 100vh;
-
-  //background-color: #121212;
   background-color: #101c2e;
 }
 
 .home-container {
   padding: 1rem 10rem 0 10rem;
 
-  @include mq(phone, max) {
-    padding: 0;
+  @include mq(desktop, max) {
+    padding: 1rem 5rem 0 5rem;
+  }
+
+  @include mq(tablet, max) {
+    padding: 0.5rem;
   }
 }
 

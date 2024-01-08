@@ -106,7 +106,7 @@ const FlashcardList = () => {
       ...defaultStyles,
       backgroundColor: "white",
       padding: "5px",
-      width: "15rem",
+      width: "13rem",
       border: "none",
       borderRadius: "15px",
       boxShadow: "none",
