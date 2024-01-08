@@ -9,15 +9,11 @@
 
   padding: 3rem;
   line-height: 2;
-  //background-color: $light-yellow;
   border-radius: $chat-border-radius;
-  color: white;
+  color: black;
 
-  background-image: linear-gradient(
-    108.49deg,
-    rgba(3, 56, 99, 0.3),
-    rgba(20, 107, 77, 0.3)
-  );
+  //background-color: #dcb6f7;
+  background: radial-gradient(circle, #dcb6f7, #dadada);
 
   @include mq(phone, max) {
     padding: 2rem 1rem;
@@ -35,10 +31,10 @@
   }
 
   .feedback-info {
-    border: 1px solid hsl(246, 11%, 22%);
-    border-radius: $chat-border-radius;
     padding: 0 1rem;
     margin-bottom: 3rem;
     font-size: 0.8rem;
+    //color: #8d9797;
+    color: #7a5af5;
   }
 }

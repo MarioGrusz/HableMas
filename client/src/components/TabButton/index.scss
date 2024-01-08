@@ -3,7 +3,7 @@
 
 .animated-button {
   pointer-events: auto;
-  color: $purple;
+  color: #a688fa;
   margin: 0 0 0 0.2em;
   padding: 0 2.5rem; //before 0 4.8rem
   height: 3rem;
@@ -23,6 +23,11 @@
   text-indent: inherit;
   white-space: pre-wrap;
 
+  // box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.2),
+  //   0px 4px 8px rgba(0, 0, 0, 0.3), 0px 8px 16px rgba(0, 0, 0, 0.4);
+
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
   @include mq(tablet-wide, max) {
     height: 2rem;
     font-size: 1.2rem;
@@ -33,19 +38,6 @@
     height: 2rem;
     font-size: 1rem;
     padding: 0 1rem;
-  }
-
-  &__border {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 3;
-    border: 1px solid;
-    border-radius: 1000px;
   }
 
   &__ripple {
@@ -86,6 +78,7 @@
     padding: 0 0.16em 0 0;
     overflow: hidden;
     z-index: 2;
+    pointer-events: all;
 
     span {
       display: block;
@@ -102,7 +95,7 @@
       position: absolute;
       top: 100%;
       left: 0;
-      color: $white;
+      color: black;
       transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
   }

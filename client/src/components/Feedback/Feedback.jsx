@@ -1,5 +1,5 @@
 import "./index.scss";
-import Button from "../Button/Button";
+import ButtonCircle from "../ButtonCircle/ButtonCircle";
 import formatRawFeedbackData from "./utils/formatedFeedback";
 import {
   getLatestFeedback,
@@ -32,17 +32,18 @@ const Feedback = () => {
 
   return (
     <div className="feedback-wrapper">
-      <Button
+      <ButtonCircle
         onClick={getNewFeedbackMutation}
         disabled={mutationIsLoading}
-        text="Generate New Feedback"
-        backgroundColor="white"
-        color="black"
-        border="1px solid black"
+        text="New Feedback"
+        backgroundColor="#7a5af5"
+        color="white"
+        border="none"
+        alignSelf={"flex-end"}
       />
-      <p className="feedback-info">
+      {/* <p className="feedback-info">
         Feedback will be generated based on last conversation
-      </p>
+      </p> */}
 
       {isLoading || isFetching || mutationIsLoading ? (
         <LoadingElement />

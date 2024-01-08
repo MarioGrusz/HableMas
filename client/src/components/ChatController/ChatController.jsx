@@ -14,7 +14,7 @@ import {
 } from "../../api/apiMessage";
 import { UserAuth } from "../../context/AuthContext";
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import Button from "../Button/Button";
+import ButtonCircle from "../ButtonCircle/ButtonCircle";
 
 const ChatController = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -127,13 +127,11 @@ const ChatController = () => {
 
   return (
     <div className="chat-controller">
-      <Button
-        text="Reset Conversation"
+      <ButtonCircle
+        text="Reset Chat"
         backgroundColor="white"
         color="black"
-        border="1px solid white"
         onClick={deleteLastConversationMutation}
-        width={"30%"}
         alignSelf={"flex-end"}
         margin={"1rem"}
       />

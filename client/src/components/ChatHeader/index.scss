@@ -8,8 +8,11 @@
   background-color: $chat-background;
   border-radius: $chat-border-radius;
 
-  background-color: $grey-color;
-  background-image: linear-gradient(76.35deg, #660ac2 15.89%, #850ac2 89.75%);
+  //background-color: #282828;
+
+  background-color: #dadada;
+  color: black;
+  box-shadow: rgba(119, 118, 118, 0.35) 0px 5px 15px;
 
   padding: 1rem 0;
   // margin: 1rem 2rem;

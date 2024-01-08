@@ -10,7 +10,7 @@ import {
 import { UserAuth } from "../../context/AuthContext";
 import LoadingElement from "../LoadingElement/LoadingElement";
 import { useEffect, useState } from "react";
-import Button from "../Button/Button";
+import ButtonCircle from "../ButtonCircle/ButtonCircle";
 
 import Select from "react-select";
 
@@ -97,8 +97,9 @@ const FlashcardList = () => {
   const customStyles = {
     option: (defaultStyles, state) => ({
       ...defaultStyles,
-      color: state.isSelected ? "#212529" : "black",
-      backgroundColor: state.isSelected ? "grey" : "#ffedd2",
+
+      backgroundColor: state.isSelected || state.isFocused ? "lightgray" : null,
+      color: state.isSelected || state.isFocused ? "black" : "blue",
     }),
 
     control: (defaultStyles) => ({
@@ -119,26 +120,23 @@ const FlashcardList = () => {
 
   return (
     <section className="flashcard-wrapper">
-      <p className="flashcard-info">
-        New flashcard set based on recent feedback
-      </p>
+      <p className="flashcard-info">Flashcard set based on recent feedback</p>
       <div className="btns-container">
         <div className="btns-container__header-wrapper">
           <Select
-            placeholder="Choose flashcard set"
+            placeholder="Choose set"
             options={dateOptions}
             onChange={handleOptionClick}
             styles={customStyles}
+            value={selectedId ? "idid" : null}
           />
         </div>
 
-        <Button
-          text="Generate New FlashcardSet"
+        <ButtonCircle
+          text="Generate New Set"
           backgroundColor="white"
           color="black"
-          border="1px solid white"
           onClick={createNewFlashcardSetMutation}
-          width={"30%"}
         />
       </div>
 

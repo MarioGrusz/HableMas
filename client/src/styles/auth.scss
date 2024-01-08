@@ -9,6 +9,7 @@
 
   min-height: 100vh;
   background-color: white;
+  //background: radial-gradient(circle at center, #7a5af5, #dadada);
 
   &__container {
     width: 100vw;
@@ -29,14 +30,9 @@
   &__left,
   &__right {
     flex: 1;
-    //border: 1px solid violet;
   }
 
   &__left {
-    // @include mq(phone, max) {
-    //   width: 60%;
-    // }
-
     img {
       object-fit: cover;
     }
