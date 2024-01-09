@@ -5,20 +5,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $chat-background;
-  border-radius: $chat-border-radius;
-
-  //background-color: #282828;
-
-  background-color: #dadada;
-  color: black;
-  box-shadow: rgba(119, 118, 118, 0.35) 0px 5px 15px;
+  border-radius: $main-border-radius;
+  background-color: $light-gray;
+  color: $black;
+  box-shadow: $header-shadow;
+  max-width: 100%;
+  margin-block: auto;
 
   padding: 1rem 0;
-  // margin: 1rem 2rem;
 
   @include mq(tablet-wide, max) {
     padding: 1rem;
+  }
+
+  @include mq(phone, max) {
+    padding: 0.3rem;
+    justify-content: space-between;
   }
 
   &__avatar-wrapper {

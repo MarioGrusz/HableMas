@@ -7,11 +7,39 @@
   border-radius: $chat-border-radius;
   display: flex;
   flex-direction: column;
-
   background: #b2a5e5;
+  position: relative;
 
   @include mq(phone, max) {
     margin-left: 0;
+    min-height: initial;
+    height: 100vh;
+  }
+
+  .mobile-only-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(3px);
+    z-index: 1000000000000;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    p {
+      font-size: 2rem;
+      line-height: 1.3;
+    }
+
+    @include mq(tablet-wide, max) {
+      display: flex;
+    }
   }
 
   &__chatbox {

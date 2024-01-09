@@ -4,15 +4,14 @@
 .custom-circle-button {
   width: 5rem;
   height: 5rem;
+  min-height: 5rem;
+  min-width: 5rem;
   border-radius: 50%;
 
   cursor: pointer;
   font-size: 0.8rem;
-
-  background-color: $auth-button-background;
-  color: $auth-button-text;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: $btn-shadow;
 }

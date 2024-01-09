@@ -4,12 +4,11 @@
 //@ desc FlashCardList component styles
 
 .flashcard-wrapper {
-  background-color: $light-green;
-  border-radius: $chat-border-radius;
+  border-radius: $main-border-radius;
   padding: 0 2rem;
   margin-bottom: 1rem;
   padding-top: 2rem;
-  background: radial-gradient(circle at center, #7a5af5, #dadada);
+  background: $flashcard-background;
 }
 
 .flashcard-info {

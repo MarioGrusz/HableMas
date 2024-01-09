@@ -126,26 +126,33 @@ const ChatController = () => {
   useEffect(handleSocketEvents, [socket]);
 
   return (
-    <div className="chat-controller">
-      <ButtonCircle
-        text="Reset Chat"
-        backgroundColor="white"
-        color="black"
-        onClick={deleteLastConversationMutation}
-        alignSelf={"flex-end"}
-        margin={"1rem"}
-      />
-      <div className="chat-controller__chatbox">
-        {messages?.map((message, index) => handleMessage(message, index))}
-        {isLoading && <DotAnimation />}
-        {!isLoading && isLoadingBot && <DotAnimation />}
+    <>
+      <div className="chat-controller">
+        <div className="mobile-only-info">
+          <p>Sorry microphone doesn't work on mobile</p>
+          <p>I am working on that</p>
+          <p>Please, use your computer</p>
+        </div>
+        <ButtonCircle
+          text="Reset Chat"
+          backgroundColor="white"
+          color="black"
+          onClick={deleteLastConversationMutation}
+          alignSelf={"flex-end"}
+          margin={"1rem"}
+        />
+        <div className="chat-controller__chatbox">
+          {messages?.map((message, index) => handleMessage(message, index))}
+          {isLoading && <DotAnimation />}
+          {!isLoading && isLoadingBot && <DotAnimation />}
+        </div>
+        <AudioRecorderComponent
+          setIsLoading={setIsLoading}
+          isRecordingEnabled={isRecordingEnabled}
+          setIsRecordingEnabled={setIsRecordingEnabled}
+        />
       </div>
-      <AudioRecorderComponent
-        setIsLoading={setIsLoading}
-        isRecordingEnabled={isRecordingEnabled}
-        setIsRecordingEnabled={setIsRecordingEnabled}
-      />
-    </div>
+    </>
   );
 };
 

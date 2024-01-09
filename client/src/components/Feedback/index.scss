@@ -6,14 +6,11 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-
   padding: 3rem;
   line-height: 2;
-  border-radius: $chat-border-radius;
-  color: black;
-
-  //background-color: #dcb6f7;
-  background: radial-gradient(circle, #dcb6f7, #dadada);
+  border-radius: $main-border-radius;
+  color: $black;
+  background: $feedback-background;
 
   @include mq(phone, max) {
     padding: 2rem 1rem;
@@ -28,13 +25,5 @@
     @include mq(phone, max) {
       width: 90%;
     }
-  }
-
-  .feedback-info {
-    padding: 0 1rem;
-    margin-bottom: 3rem;
-    font-size: 0.8rem;
-    //color: #8d9797;
-    color: #7a5af5;
   }
 }

@@ -1,19 +1,26 @@
-// Brand colors
-$brand-primary: white;
-$brand-secondary: #ef445c;
-
-// Text colors
-$text-primary: #000000;
-$text-secondary: #e9e9e9;
-
 // Colors
+$midnight-blue: #101c2e;
+$black: #000000;
+$light-gray: #dadada;
+$header-color: #000000;
+$lavender: #a688fa;
+$lavender-blush: #b2a5e5;
 $grey-color: #bbb;
 $blue-color: #0065ff;
 $white-color: #fff;
 
-// Element dimensions
-$element-max-width: 260px;
-$auth-container-width: 1020px;
+// Shadows
+$header-shadow: rgba(119, 118, 118, 0.35) 0px 5px 15px;
+$btn-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+// Gradients
+$feedback-background: radial-gradient(circle, #dcb6f7, #dadada);
+$flashcard-background: radial-gradient(circle at center, #7a5af5, #dadada);
+
+// Border and Radius
+$main-border-radius: 1.5rem;
+
+//Text sizes
 $text-small: 0.8rem;
 
 // Chat styles
@@ -22,24 +29,3 @@ $chat-2nd-background: #aac1cf;
 $chat-border-radius: 1.5rem;
 $chat-user-bubble: #ba80e6;
 $dots-color: #9880ff;
-
-// Auth button styles
-$auth-button-background: #f1f5f6;
-$auth-button-text: #344563;
-
-//NEW COLOR PALETE
-
-$white: #ffffff;
-$purple: #5e43ff;
-$light-blue: #cec6ff;
-$light-yellow: #ffedd2;
-$grey: #f4f4f4;
-$black: #000000;
-$light-black: #202437;
-$light-green: #b5dcdb;
-$mint: #cffff1;
-$pink: #ffd8f4;
-
-/***************************************/
-
-/** SCSS DARK THEME PRIMARY COLORS */
