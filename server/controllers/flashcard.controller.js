@@ -84,7 +84,7 @@ const createFlashcardSetAndSaveController = async (req, res, next) => {
     try{
         const uid = req.uid;
         const flashcardSet = await createFlashcardSet(uid);
-        res.status(200).json({ message: 'flashcardSet added'});
+        res.status(200).json(flashcardSet);
   
     } catch (error) {
       next(error)

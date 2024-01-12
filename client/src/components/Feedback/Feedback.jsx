@@ -30,6 +30,8 @@ const Feedback = () => {
       },
     });
 
+  console.log("feedback", feedback);
+
   return (
     <div className="feedback-wrapper">
       <ButtonCircle
@@ -41,14 +43,21 @@ const Feedback = () => {
         border="none"
         alignSelf={"flex-end"}
       />
-      {/* <p className="feedback-info">
-        Feedback will be generated based on last conversation
-      </p> */}
 
       {isLoading || isFetching || mutationIsLoading ? (
         <LoadingElement />
       ) : (
-        <>{feedback && <div>{formatRawFeedbackData(feedback)}</div>}</>
+        <>
+          {feedback && feedback.length > 0 ? (
+            <div>{formatRawFeedbackData(feedback)}</div>
+          ) : (
+            <div className="no-feedback">
+              <p>No Feedback found!</p>
+              <p>Click 'New Feedback' button</p>
+              <p>To generate new one!</p>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

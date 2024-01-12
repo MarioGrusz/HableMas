@@ -13,7 +13,14 @@ const createFlashcardSet = async (uid) => {
         if (!user) return null;
 
         const feedback = await Feedback.find({ _id: { $in: user.feedback } });
-        if(!feedback) return;
+        
+        if (!feedback || !Array.isArray(feedback)) {
+            return 'Generate feedback first';
+        }
+        if (feedback.length === 0) {
+            return 'Generate feedback first';
+        }
+
         const flashcardSet = extractFlashcardSet(feedback[0].feedback);
 
         
@@ -25,6 +32,7 @@ const createFlashcardSet = async (uid) => {
 
         user.allFlashcardSets.push(flashcardSetDocument._id);
         await user.save({ session });
+        return 'flashcardSet created';
         
     })
 };

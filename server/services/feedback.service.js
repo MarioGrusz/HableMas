@@ -11,7 +11,7 @@ const retrieveSavedFeedback = async (uid) => {
         const user = await findUser(uid);
         if (!user) return null;
         let feedback = await Feedback.findOne({ creator: user._id }).session(session);
-        if (!feedback) return 'no feedback yet';
+        if (!feedback) return [];
         return feedback
 
     });

@@ -140,12 +140,21 @@ const FlashcardList = () => {
         />
       </div>
 
-      {flashcardData ? (
-        <div className="flashcard-container">{renderFlashcards}</div>
+      {isLoadingFlashcard || isLoadingFlashcardId || isLoadingdates ? (
+        <LoadingElement />
       ) : (
-        <div className="no-flashcards-info-wrapper">
-          <h1>No flashcards found.</h1>
-        </div>
+        <>
+          {flashcardData ? (
+            <div className="flashcard-container">{renderFlashcards}</div>
+          ) : (
+            <div className="no-flashcards">
+              <p>No flashcards found.</p>
+              <p>If no feedback is available,</p>
+              <p>generate one first.</p>
+              <p>Click 'Generate New Set' afterwards.</p>
+            </div>
+          )}
+        </>
       )}
     </section>
   );
