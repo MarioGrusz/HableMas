@@ -48,7 +48,7 @@ const Feedback = () => {
         <LoadingElement />
       ) : (
         <>
-          {feedback && feedback.length > 0 ? (
+          {feedback && feedback.feedback.length > 0 ? (
             <div>{formatRawFeedbackData(feedback)}</div>
           ) : (
             <div className="no-feedback">
