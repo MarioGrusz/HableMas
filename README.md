@@ -30,6 +30,8 @@ Table of Contents
 This project is an AI chatbot designed to help language learners practice conversational Spanish. Designed to overcome the challenge of lacking conversation partners, enableusers to engage in conversations with Alejandro. Through these interactions, users can receive constructive feedback and effortlessly generate flashcards with newly acquired vocabulary.
 It is built with a MERN stack, socket.io for real-time communication, and Firebase for authentication. It also integrates Google Text-to-Speech and OpenAI for natural language processing.
 
+<img width="1179" alt="ai_mobiles" src="https://github.com/MarioGrusz/HableMas/assets/113439131/cf74daa6-f073-4893-8165-cf47a2e84406">
+
 ## Features
 ### Dynamic Conversations
 
