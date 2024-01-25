@@ -32,6 +32,3 @@ export const setupSocketEvents = (io) => {
    });
 };
 
-
-
-//pass token through socket https://www.phind.com/search?cache=kmyv1g9nbhpwc10swohjypxd
